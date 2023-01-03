@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\IndexController;
 use App\Http\Controllers\SuratController;
 use Illuminate\Support\Facades\Route;
 
@@ -14,8 +15,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [IndexController::class, 'index']);
 
-Route::resource('/surat-masuk', SuratController::class);
+Route::resource('/surat-masuk', SuratController::class, [
+    'names' => [
+        'index' => 'surat.masuk'
+    ]
+]);

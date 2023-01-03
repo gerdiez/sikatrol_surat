@@ -10,11 +10,14 @@
 </head>
 
 <body>
-    <div class="wrapper">
-        {{-- <x-sidebar /> --}}
-        <main id="app" class="w-100 vh-100" style="margin-left:4.5rem">
-            @yield('container')
-        </main>
+    <div x-data="{ sidebarOpen: true }" class="flex overflow-x-hidden h-screen">
+        <x-sidebar />
+        <div class="flex-1">
+            <x-header />
+            <main class="p-4">
+                @yield('content')
+            </main>
+        </div>
     </div>
 </body>
 
