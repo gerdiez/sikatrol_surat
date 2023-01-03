@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Surat;
 use Illuminate\Http\Request;
 
-class SuratController extends Controller
+class SuratMasukController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class SuratController extends Controller
     public function index()
     {
         return view('surat.surat-masuk.index', [
-			'title' => 'Surat Masuk',
+			'title' => 'SURAT MASUK',
 			'surat' => Surat::get(),
 		]);
     }
@@ -27,7 +27,10 @@ class SuratController extends Controller
      */
     public function create()
     {
-        //
+        return view('surat.surat-masuk.create', [
+			'title' => 'TAMBAH SURAT',
+			'surat' => Surat::get(),
+		]);
     }
 
     /**

@@ -13,7 +13,7 @@
     <div x-data="{ sidebarOpen: true }" class="flex overflow-x-hidden h-screen">
         <x-sidebar />
         <div class="flex-1">
-            <x-header />
+            <x-header title="{{ $title }}" />
             <main class="p-4">
                 @yield('content')
             </main>

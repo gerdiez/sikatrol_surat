@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\IndexController;
-use App\Http\Controllers\SuratController;
+use App\Http\Controllers\SuratMasukController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,8 +17,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [IndexController::class, 'index']);
 
-Route::resource('/surat-masuk', SuratController::class, [
+Route::resource('/surat-masuk', SuratMasukController::class, [
     'names' => [
-        'index' => 'surat.masuk'
+        'index' => 'surat.masuk',
+        'create' => 'surat.masuk.create'
     ]
 ]);

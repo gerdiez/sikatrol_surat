@@ -5,10 +5,12 @@
         <div class="overflow-x-auto relative sm:rounded-lg">
             <div class="flex justify-between items-center pb-4 bg-white">
                 <div>
-                    <button id="dropdownActionButton"
+                    <button
                         class="inline-flex items-center text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-3 py-1.5"
                         type="button">
-                        Tambah Surat
+                        <a href="{{ route('surat.masuk.create') }}">
+                            Tambah Surat
+                        </a>
                     </button>
                 </div>
                 <label for="table-search" class="sr-only">Search</label>

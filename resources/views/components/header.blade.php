@@ -7,7 +7,7 @@
             </button>
         </div>
         <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
-            <h1 class="text-2xl">SURAT MASUK</h1>
+            <h1 class="text-2xl">{{ $title }}</h1>
         </div>
     </div>
 </nav>
