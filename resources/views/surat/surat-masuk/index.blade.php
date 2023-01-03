@@ -8,8 +8,7 @@
                     <button id="dropdownActionButton"
                         class="inline-flex items-center text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-3 py-1.5"
                         type="button">
-                        <span class="sr-only">Tambah Surat</span>
-                        Action
+                        Tambah Surat
                     </button>
                 </div>
                 <label for="table-search" class="sr-only">Search</label>
@@ -22,57 +21,73 @@
                 </div>
             </div>
             <table class="w-full text-sm border border-gray-200 text-left shadow-md text-gray-500">
-                <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50 text-center">
                     <tr>
                         <th scope="col" class="p-4">
-                            <div class="flex items-center">
-                                <input id="checkbox-all-search" type="checkbox"
-                                    class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 focus:ring-2">
-                                <label for="checkbox-all-search" class="sr-only">checkbox</label>
-                            </div>
+                            #
                         </th>
                         <th scope="col" class="py-3 px-6">
-                            Name
+                            ID SURAT
                         </th>
                         <th scope="col" class="py-3 px-6">
-                            Position
+                            NO SURAT
                         </th>
                         <th scope="col" class="py-3 px-6">
-                            Status
+                            SURAT DARI
                         </th>
                         <th scope="col" class="py-3 px-6">
-                            Action
+                            KATEGORI
+                        </th>
+                        <th scope="col" class="py-3 px-6">
+                            PERIHAL
+                        </th>
+                        <th scope="col" class="py-3 px-6">
+                            SIFAT
+                        </th>
+                        <th scope="col" class="py-3 px-6">
+                            TGL KEGIATAN
+                        </th>
+                        <th scope="col" class="py-3 px-6">
+                            DITERUSKAN KE
+                        </th>
+                        <th scope="col" class="py-3 px-6">
+                            AKSI
                         </th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr class="bg-white border-b hover:bg-gray-50">
                         <td class="p-4 w-4">
-                            <div class="flex items-center">
-                                <input id="checkbox-table-search-1" type="checkbox"
-                                    class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 focus:ring-2">
-                                <label for="checkbox-table-search-1" class="sr-only">checkbox</label>
-                            </div>
+                            1
                         </td>
                         <th scope="row" class="flex items-center py-4 px-6 text-gray-900 whitespace-nowrap">
-                            <img class="w-10 h-10 rounded-full" src="/docs/images/people/profile-picture-1.jpg"
-                                alt="Jese image">
-                            <div class="pl-3">
-                                <div class="text-base font-semibold">Neil Sims</div>
-                                <div class="font-normal text-gray-500">neil.sims@flowbite.com</div>
-                            </div>
+                            SMXXXX
                         </th>
                         <td class="py-4 px-6">
-                            React Developer
+                            RGL/XX/XX/XX
                         </td>
                         <td class="py-4 px-6">
-                            <div class="flex items-center">
-                                <div class="h-2.5 w-2.5 rounded-full bg-green-400 mr-2"></div> Online
-                            </div>
+                            DISKOMINFO
                         </td>
                         <td class="py-4 px-6">
-                            <a href="#" class="font-medium text-blue-600 hover:underline">Edit
-                                user</a>
+                            UNDANGAN
+                        </td>
+                        <td class="py-4 px-6">
+                            SOSIALISASI
+                        </td>
+                        <td class="py-4 px-6">
+                            PENTING
+                        </td>
+                        <td class="py-4 px-6">
+                            17 APRIL 2022
+                        </td>
+                        <td class="py-4 px-6">
+                            KASUBAH UMPEG
+                        </td>
+                        <td class="py-4 px-6">
+                            <a href="#" class="font-medium text-blue-600 hover:underline">Lihat</a>
+                            <a href="#" class="font-medium text-blue-600 hover:underline">Edit</a>
+                            <a href="#" class="font-medium text-blue-600 hover:underline">Hapus</a>
                         </td>
                     </tr>
                 </tbody>

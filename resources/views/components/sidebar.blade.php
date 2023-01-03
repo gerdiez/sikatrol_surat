@@ -7,10 +7,12 @@
         </button>
     </div>
     <nav class="flex-1 ml-10 flex flex-col bg-white">
-        <a href="#" class="p-2">Surat Masuk</a>
+        <a href="#" class="p-2">Agenda</a>
+        <a href="#" class="p-2 mt-5">Surat Masuk</a>
         <a href="#" class="p-2 mt-5">Surat Keluar</a>
         <a href="#" class="p-2 mt-5">Surat Perintah</a>
         <a href="#" class="p-2 mt-5">Surat Keputusan</a>
         <a href="#" class="p-2 mt-5">Surat Tugas</a>
+        <a href="#" class="p-2 mt-5">User Management</a>
     </nav>
 </aside>
