@@ -15,7 +15,8 @@ class SuratMasukController extends Controller
     public function index()
     {
         return view('surat.surat-masuk.index', [
-			'title' => 'SURAT MASUK',
+			'title' => 'Surat Masuk',
+			'name' => 'SURAT MASUK',
 			'surat' => Surat::get(),
 		]);
     }
