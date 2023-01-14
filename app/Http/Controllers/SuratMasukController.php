@@ -15,10 +15,10 @@ class SuratMasukController extends Controller
     public function index()
     {
         return view('surat.surat-masuk.index', [
-			'title' => 'Surat Masuk',
-			'name' => 'SURAT MASUK',
-			'surat' => Surat::get(),
-		]);
+            'title' => 'Surat Masuk',
+            'name' => 'SURAT MASUK',
+            'surat' => Surat::get(),
+        ]);
     }
 
     /**
@@ -29,9 +29,9 @@ class SuratMasukController extends Controller
     public function create()
     {
         return view('surat.surat-masuk.create', [
-			'title' => 'TAMBAH SURAT',
-			'surat' => Surat::get(),
-		]);
+            'title' => 'Tambah Surat Masuk',
+            'name' => 'TAMBAH SURAT',
+        ]);
     }
 
     /**
