@@ -1,4 +1,4 @@
-<aside class="flex-shrink-0 w-60 flex flex-col border-r transition-all duration-300" :class="{ '-ml-48': !sidebarOpen }">
+<aside class="flex-shrink-0 w-60 flex flex-col border-r transition-all duration-300" :class="{ '-ml-48': sidebarOpen }">
     <div class="h-14 flex justify-end">
         <button class="p-1 mr-2 bg-white" x-on:click="sidebarOpen = !sidebarOpen">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">

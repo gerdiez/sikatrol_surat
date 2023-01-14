@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\SuratMasukController;
+use App\Http\Controllers\SuratKeluarController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,3 +24,5 @@ Route::resource('/surat-masuk', SuratMasukController::class, [
         'create' => 'surat.masuk.create'
     ]
 ]);
+
+Route::resource('/surat-keluar', SuratKeluarController::class);
