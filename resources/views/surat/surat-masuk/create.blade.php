@@ -1,7 +1,14 @@
 @extends('layouts.main')
 
+@section('name')
+    <a href="{{ route('surat.masuk') }}" class="flex text-gray-600 font-bold text-2xl" id="backPage">
+        <i class="fa-solid fa-chevron-left mr-3 mt-1"></i>
+        <h1 class="text-gray-600 font-bold text-2xl">TAMBAH SURAT</h1>
+    </a>
+@endsection
+
 @section('content')
-    <form class="mx-8">
+    <form class="p-5 bg-white">
         <div class="grid grid-cols-7">
             <div class="mb-10 col-span-3 grid grid-cols-3">
                 <label for="email" class="my-auto font-medium text-gray-900">Surat Dari</label>

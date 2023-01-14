@@ -8,11 +8,10 @@
 </head>
 
 <body>
-    <div x-data="{ sidebarOpen: false }" class="flex overflow-x-hidden h-screen">
+    <div x-data="{ sidebarOpen: true }" class="flex overflow-x-hidden h-screen">
         <x-sidebar.index />
         <div class="flex-1">
-            <x-navbar name="{{ $name }}"/>
-            {{-- <x-header title="{{ $title }}" /> --}}
+            <x-navbar />
             <main class="p-4 bg-[#F4F7F9]">
                 @yield('content')
             </main>

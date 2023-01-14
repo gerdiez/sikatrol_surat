@@ -16,7 +16,6 @@ class SuratMasukController extends Controller
     {
         return view('surat.surat-masuk.index', [
             'title' => 'Surat Masuk',
-            'name' => 'SURAT MASUK',
             'surat' => Surat::get(),
         ]);
     }
@@ -30,7 +29,6 @@ class SuratMasukController extends Controller
     {
         return view('surat.surat-masuk.create', [
             'title' => 'Tambah Surat Masuk',
-            'name' => 'TAMBAH SURAT',
         ]);
     }
 
