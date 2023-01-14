@@ -9,7 +9,7 @@
 
 <body>
     <div x-data="{ sidebarOpen: false }" class="flex overflow-x-hidden h-screen">
-        <x-sidebar />
+        <x-sidebar.index />
         <div class="flex-1">
             <x-navbar name="{{ $name }}"/>
             {{-- <x-header title="{{ $title }}" /> --}}
