@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Surat;
 use Illuminate\Http\Request;
 
-class SuratKeluarController extends Controller
+class SuratPerintahController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,10 +13,9 @@ class SuratKeluarController extends Controller
      */
     public function index()
     {
-        return view('surat.surat-keluar.index', [
-			'title' => 'Surat Keluar',
-			'surat' => Surat::get(),
-		]);
+        return view('surat.surat-perintah.index', [
+            'title' => 'Surat Perintah',
+        ]);
     }
 
     /**
@@ -44,10 +42,10 @@ class SuratKeluarController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Surat  $surat
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Surat $surat)
+    public function show($id)
     {
         //
     }
@@ -55,10 +53,10 @@ class SuratKeluarController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Surat  $surat
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Surat $surat)
+    public function edit($id)
     {
         //
     }
@@ -67,10 +65,10 @@ class SuratKeluarController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Surat  $surat
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Surat $surat)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -78,10 +76,10 @@ class SuratKeluarController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Surat  $surat
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Surat $surat)
+    public function destroy($id)
     {
         //
     }

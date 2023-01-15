@@ -3,6 +3,9 @@
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\SuratMasukController;
 use App\Http\Controllers\SuratKeluarController;
+use App\Http\Controllers\SuratKeputusanController;
+use App\Http\Controllers\SuratPerintahController;
+use App\Http\Controllers\SuratTugasController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,4 +28,26 @@ Route::resource('/surat-masuk', SuratMasukController::class, [
     ]
 ]);
 
-Route::resource('/surat-keluar', SuratKeluarController::class);
+Route::resource('/surat-keluar', SuratKeluarController::class, [
+    'names' => [
+        'index' => 'surat.keluar',
+    ]
+]);
+
+Route::resource('/surat-perintah', SuratPerintahController::class, [
+    'names' => [
+        'index' => 'surat.perintah',
+    ]
+]);
+
+Route::resource('/surat-keputusan', SuratKeputusanController::class, [
+    'names' => [
+        'index' => 'surat.keputusan',
+    ]
+]);
+
+Route::resource('/surat-tugas', SuratTugasController::class, [
+    'names' => [
+        'index' => 'surat.tugas',
+    ]
+]);
