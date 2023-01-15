@@ -16,7 +16,7 @@ class SuratMasukController extends Controller
     {
         return view('surat.surat-masuk.index', [
             'title' => 'Surat Masuk',
-            'surat' => Surat::get(),
+            'surats' => Surat::get(),
         ]);
     }
 
@@ -40,7 +40,24 @@ class SuratMasukController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // return $request;
+        $validate = $request->validate([
+            'surat_dari' => 'required',
+            'jenis_surat' => 'required',
+            'no_surat' => 'required',
+            'tanggal_surat' => 'required',
+            'sifat' => 'required',
+            'no_agenda' => 'required',
+            'tanggal_kegiatan' => 'required',
+            'kategori' => 'required',
+            'waktu_diterima' => 'required',
+            'file' => 'required',
+            'diteruskan_ke' => 'required',
+            'catatan' => 'required',
+            'dari' => 'required',
+        ]);
+        Surat::create($validate);
+        return redirect('/surat-masuk');
     }
 
     /**

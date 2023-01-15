@@ -7,13 +7,11 @@
 @section('content')
     <div class="p-5 rounded-lg bg-white">
         <div class="flex justify-between items-center pb-4">
-            <button
-                class="inline-flex items-center text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-3 py-1.5"
-                type="button">
-                <a href="{{ route('surat.masuk.create') }}">
+            <button type="button"
+                class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"><a
+                    href="{{ route('surat.masuk.create') }}">
                     Tambah Surat
-                </a>
-            </button>
+                </a></button>
             <label for="table-search" class="sr-only">Search</label>
             <div class="relative">
                 <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
@@ -60,8 +58,56 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="bg-white border-b hover:bg-gray-50">
-                        <td class="p-4 w-4">
+                    @foreach ($surats as $surat)
+                        <tr class="bg-white border-b hover:bg-gray-50">
+                            <td class="py-4 px-6">
+                                {{ $loop->iteration }}
+                            </td>
+                            <td class="py-4 px-6">
+                                {{ $surat->id }}
+                            </td>
+                            <td class="py-4 px-6">
+                                {{ $surat->no_surat }}
+                            </td>
+                            <td class="py-4 px-6">
+                                {{ $surat->dari }}
+                            </td>
+                            <td class="py-4 px-6">
+                                {{ $surat->kategori }}
+                            </td>
+                            <td class="py-4 px-6">
+                                {{ $surat->waktu_diterima }}
+                            </td>
+                            <td class="py-4 px-6">
+                                {{ $surat->sifat }}
+                            </td>
+                            <td class="py-4 px-6">
+                                {{ $surat->tanggal_kegiatan }}
+                            </td>
+                            <td class="py-4 px-6">
+                                {{ $surat->diteruskan_ke }}
+                            </td>
+                            <td class="py-4 text-center">
+                                <div class="tooltip static hover:relative" data-tip="Lihat">
+                                    <button class="mr-1 text-blue-600 hover:bg-blue-300 hover:rounded-md">
+                                        <i class="fa-solid fa-eye rounded-md border border-blue-400 p-1"></i>
+                                    </button>
+                                </div>
+                                <div class="tooltip static hover:relative" data-tip="Ubah">
+                                    <button class="mr-1 text-orange-600 hover:bg-orange-300 hover:rounded-md">
+                                        <i class="fa-solid fa-pen-to-square rounded-md border border-orange-400 p-1"></i>
+                                    </button>
+                                </div>
+                                <div class="tooltip static hover:relative" data-tip="Hapus">
+                                    <button class="mr-1 text-red-600 hover:bg-red-300 hover:rounded-md">
+                                        <i class="fa-solid fa-trash-can rounded-md border border-red-400 p-1"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    @endforeach
+                    {{-- <tr class="bg-white border-b hover:bg-gray-50">
+                        <td class="py-4 px-6">
                             1
                         </td>
                         <td class="py-4 px-6">
@@ -93,7 +139,7 @@
                             <a href="#" class="font-medium text-blue-600 hover:underline">Edit</a>
                             <a href="#" class="font-medium text-blue-600 hover:underline">Hapus</a>
                         </td>
-                    </tr>
+                    </tr> --}}
                 </tbody>
             </table>
         </div>
