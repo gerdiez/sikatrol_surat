@@ -25,7 +25,8 @@ Route::resource('/surat-masuk', SuratMasukController::class, [
     'names' => [
         'index' => 'surat.masuk',
         'create' => 'surat.masuk.create',
-        'store' => 'surat.masuk.store'
+        'store' => 'surat.masuk.store',
+        'show' => 'surat.masuk.show'
     ]
 ]);
 

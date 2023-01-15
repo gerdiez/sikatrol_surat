@@ -13,6 +13,7 @@
                 <x-sidebar.menu-dropdown name="Surat Masuk" />
                 <ul class="space-y-1 py-1 hidden" :class="{ '!block': dropdown }">
                     <x-sidebar.sub-menu name="Belum Disposisi" route="{{ route('surat.masuk') }}" />
+                    {{-- <x-sidebar.sub-menu name="Belum Disposisi" route="/surat-masuk" /> --}}
                     <x-sidebar.sub-menu name="Sudah Disposisi" route="#" />
                 </ul>
             </li>

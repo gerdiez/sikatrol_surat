@@ -9,7 +9,8 @@
         <div class="flex justify-between items-center pb-4">
             <button type="button"
                 class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"><a
-                    href="{{ route('surat.masuk.create') }}">
+                    {{-- href="{{ route('surat.masuk.create') }}"> --}}
+                    href="/surat-masuk/create">
                     Tambah Surat
                 </a></button>
             <label for="table-search" class="sr-only">Search</label>
@@ -70,7 +71,7 @@
                                 {{ $surat->no_surat }}
                             </td>
                             <td class="py-4 px-6">
-                                {{ $surat->dari }}
+                                {{ $surat->surat_dari }}
                             </td>
                             <td class="py-4 px-6">
                                 {{ $surat->kategori }}
@@ -89,57 +90,24 @@
                             </td>
                             <td class="py-4 text-center">
                                 <div class="tooltip static hover:relative" data-tip="Lihat">
-                                    <button class="mr-1 text-blue-600 hover:bg-blue-300 hover:rounded-md">
+                                    <a href="surat-masuk/{{ $surat->id }}"
+                                        class="mr-1 text-blue-600 hover:bg-blue-300 hover:rounded-md">
                                         <i class="fa-solid fa-eye rounded-md border border-blue-400 p-1"></i>
-                                    </button>
+                                    </a>
                                 </div>
                                 <div class="tooltip static hover:relative" data-tip="Ubah">
-                                    <button class="mr-1 text-orange-600 hover:bg-orange-300 hover:rounded-md">
+                                    <a href="#" class="mr-1 text-orange-600 hover:bg-orange-300 hover:rounded-md">
                                         <i class="fa-solid fa-pen-to-square rounded-md border border-orange-400 p-1"></i>
-                                    </button>
+                                    </a>
                                 </div>
                                 <div class="tooltip static hover:relative" data-tip="Hapus">
-                                    <button class="mr-1 text-red-600 hover:bg-red-300 hover:rounded-md">
+                                    <a href="#" class="mr-1 text-red-600 hover:bg-red-300 hover:rounded-md">
                                         <i class="fa-solid fa-trash-can rounded-md border border-red-400 p-1"></i>
-                                    </button>
+                                    </a>
                                 </div>
                             </td>
                         </tr>
                     @endforeach
-                    {{-- <tr class="bg-white border-b hover:bg-gray-50">
-                        <td class="py-4 px-6">
-                            1
-                        </td>
-                        <td class="py-4 px-6">
-                            SMXXXX
-                        </td>
-                        <td class="py-4 px-6">
-                            RGL/XX/XX/XX
-                        </td>
-                        <td class="py-4 px-6">
-                            DISKOMINFO
-                        </td>
-                        <td class="py-4 px-6">
-                            UNDANGAN
-                        </td>
-                        <td class="py-4 px-6">
-                            SOSIALISASI
-                        </td>
-                        <td class="py-4 px-6">
-                            PENTING
-                        </td>
-                        <td class="py-4 px-6">
-                            17 APRIL 2022
-                        </td>
-                        <td class="py-4 px-6">
-                            KASUBAH UMPEG
-                        </td>
-                        <td class="py-4 px-6">
-                            <a href="#" class="font-medium text-blue-600 hover:underline">Lihat</a>
-                            <a href="#" class="font-medium text-blue-600 hover:underline">Edit</a>
-                            <a href="#" class="font-medium text-blue-600 hover:underline">Hapus</a>
-                        </td>
-                    </tr> --}}
                 </tbody>
             </table>
         </div>

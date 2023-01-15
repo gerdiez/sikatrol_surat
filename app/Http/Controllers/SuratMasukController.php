@@ -40,7 +40,6 @@ class SuratMasukController extends Controller
      */
     public function store(Request $request)
     {
-        // return $request;
         $validate = $request->validate([
             'surat_dari' => 'required',
             'jenis_surat' => 'required',
@@ -66,9 +65,12 @@ class SuratMasukController extends Controller
      * @param  \App\Models\Surat  $surat
      * @return \Illuminate\Http\Response
      */
-    public function show(Surat $surat)
+    public function show($id)
     {
-        //
+        return view('surat.surat-masuk.detail', [
+            'title' => 'Detail Surat Masuk',
+            'surats' => Surat::where('id', $id)->get(),
+        ]);
     }
 
     /**
