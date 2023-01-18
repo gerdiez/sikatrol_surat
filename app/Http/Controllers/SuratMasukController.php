@@ -122,8 +122,9 @@ class SuratMasukController extends Controller
      * @param  \App\Models\Surat  $surat
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Surat $surat)
+    public function destroy($id)
     {
-        //
+        Surat::destroy($id);
+        return redirect('/surat-masuk');
     }
 }

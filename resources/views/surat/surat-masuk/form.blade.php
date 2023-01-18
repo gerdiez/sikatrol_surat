@@ -37,7 +37,7 @@
             @if ($action == 'create')
                 <select id="" name="sifat"
                     class="appearance-none bg-gray-50 border col-span-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2.5">
-                    <option value="" disabled>Pilih...</option>
+                    <option selected disabled>Pilih...</option>
                     <option value="US">United States</option>
                     <option value="CA">Canada</option>
                 </select>

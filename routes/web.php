@@ -27,7 +27,8 @@ Route::resource('/surat-masuk', SuratMasukController::class, [
         'create' => 'surat.masuk.create',
         'store' => 'surat.masuk.store',
         'show' => 'surat.masuk.show',
-        'update' => 'surat.masuk.update'
+        'update' => 'surat.masuk.update',
+        'destroy' => 'surat.masuk.destroy'
     ]
 ]);
 
