@@ -96,7 +96,7 @@
                                     </a>
                                 </div>
                                 <div class="tooltip static hover:relative" data-tip="Ubah">
-                                    <a href="#" class="mr-1 text-orange-600 hover:bg-orange-300 hover:rounded-md">
+                                    <a href="surat-masuk/{{ $surat->id }}/edit" class="mr-1 text-orange-600 hover:bg-orange-300 hover:rounded-md">
                                         <i class="fa-solid fa-pen-to-square rounded-md border border-orange-400 p-1"></i>
                                     </a>
                                 </div>

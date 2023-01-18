@@ -79,9 +79,13 @@ class SuratMasukController extends Controller
      * @param  \App\Models\Surat  $surat
      * @return \Illuminate\Http\Response
      */
-    public function edit(Surat $surat)
+    public function edit($id)
     {
-        //
+        return view('surat.surat-masuk.edit', [
+            'title' => 'Edit Surat Masuk',
+            'surats' => Surat::where('id', $id)->get(),
+            'id' => $id
+        ]);
     }
 
     /**
@@ -91,9 +95,25 @@ class SuratMasukController extends Controller
      * @param  \App\Models\Surat  $surat
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Surat $surat)
+    public function update(Request $request, $id)
     {
-        //
+        $validate = $request->validate([
+            'surat_dari' => 'required',
+            'jenis_surat' => 'required',
+            'no_surat' => 'required',
+            'tanggal_surat' => 'required',
+            'sifat' => 'required',
+            'no_agenda' => 'required',
+            'tanggal_kegiatan' => 'required',
+            'kategori' => 'required',
+            'waktu_diterima' => 'required',
+            'file' => 'required',
+            'diteruskan_ke' => 'required',
+            'catatan' => 'required',
+            'dari' => 'required',
+        ]);
+        Surat::where('id', $id)->update($validate);
+        return redirect('/surat-masuk');
     }
 
     /**
