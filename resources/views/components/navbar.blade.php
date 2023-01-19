@@ -19,9 +19,12 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                                Sign out
-                            </a>
+                            <form action="/logout" method="post" class="mb-0 text-sm text-gray-700 hover:bg-gray-100">
+                                @csrf
+                                <button type="submit" class="px-4 py-2 block w-full text-left">
+                                    Sign out
+                                </button>
+                            </form>
                         </li>
                     </ul>
                 </div>

@@ -6,6 +6,6 @@ class IndexController extends Controller
 {
     public function index()
     {
-        return redirect()->route('surat.masuk');
+        return redirect()->route('login');
     }
 }
