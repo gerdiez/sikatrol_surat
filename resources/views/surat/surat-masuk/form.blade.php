@@ -10,7 +10,7 @@
     <div class="mb-10 col-start-5 col-end-8 grid grid-cols-3">
         <label for="" class="my-auto font-medium text-gray-900">Jenis Surat</label>
         <input type="text" id="" name="jenis_surat"
-            @if ($action == 'create') class="bg-gray-50 border col-span-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5"
+            @if ($action == 'create') class="bg-white" value="Surat Masuk" disabled
             @elseif ($action == 'detail') class="bg-white" value="{{ $surats[0]->jenis_surat }}" disabled
             @elseif ($action == 'edit') class="bg-gray-50 border col-span-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5" value="{{ $surats[0]->jenis_surat }}" @endif
             required>
@@ -98,37 +98,56 @@
             @elseif ($action == 'edit') class="bg-gray-50 ml-5 border  col-start-2 col-end-9 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5" value="{{ $surats[0]->waktu_diterima }}" @endif
             required>
     </div>
-    <div class="mb-10 col-start-1 col-end-8 grid grid-cols-8">
+    <div class="mb-10 col-span-3 grid grid-cols-3">
         <label for="" class="my-auto font-medium text-gray-900">Upload</label>
         <input type="text" id="" name="file"
-            @if ($action == 'create') class="bg-gray-50 ml-5 border col-start-2 col-end-9 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5"
-            @elseif ($action == 'detail') class="bg-white ml-5" value="{{ $surats[0]->file }}" disabled
-            @elseif ($action == 'edit') class="bg-gray-50 ml-5 border  col-start-2 col-end-9 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5" value="{{ $surats[0]->file }}" @endif
+            @if ($action == 'create') class="bg-gray-50 col-span-2 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5"
+            @elseif ($action == 'detail') class="bg-white" value="{{ $surats[0]->file }}" disabled
+            @elseif ($action == 'edit') class="bg-gray-50 col-span-2 border  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5" value="{{ $surats[0]->file }}" @endif
             required>
     </div>
-    <div class="mb-10 col-span-3 grid grid-cols-3">
-        <label for="email" class="my-auto font-medium text-gray-900">Diteruskan Ke</label>
-        <input type="text" id="" name="diteruskan_ke"
-            @if ($action == 'create') class="bg-gray-50 border col-span-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5"
-            @elseif ($action == 'detail') class="bg-white" value="{{ $surats[0]->diteruskan_ke }}" disabled
-            @elseif ($action == 'edit') class="bg-gray-50 border col-span-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5" value="{{ $surats[0]->diteruskan_ke }}" @endif
-            required>
+    <div class="mb-10 col-start-5 col-end-8">
+        <div class="flex items-center mt-2" x-data="{ disposisi: false }">
+            <input id="checked-checkbox" type="checkbox" name="disposisi" value=""
+                x-on:click="diposisi = !disposisi; $dispatch('disposisi')"
+                class="w-6 h-6 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+            <div x-show="!disposisi">
+                <label for="checked-checkbox" class="ml-4 font-medium text-gray-900">Belum
+                    Disposisi</label>
+            </div>
+            <div x-show="disposisi">
+                <label for="checked-checkbox" class="ml-4 font-medium text-gray-900">Sudah
+                    Disposisi</label>
+            </div>
+        </div>
     </div>
-    <div class="mb-10 col-start-1 col-end-8 grid grid-cols-8">
-        <label for="" class="my-auto font-medium text-gray-900">Catatan</label>
-        <input type="text" id="" name="catatan"
-            @if ($action == 'create') class="bg-gray-50 ml-5 border col-start-2 col-end-9 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5"
-            @elseif ($action == 'detail') class="bg-white ml-5" value="{{ $surats[0]->catatan }}" disabled
-            @elseif ($action == 'edit') class="bg-gray-50 ml-5 border col-start-2 col-end-9 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5" value="{{ $surats[0]->catatan }}" @endif
-            required>
-    </div>
-    <div class="mb-10 col-span-3 grid grid-cols-3">
-        <label for="email" class="my-auto font-medium text-gray-900">Dari</label>
-        <input type="text" id="" name="dari"
-            @if ($action == 'create') class="bg-gray-50 border col-span-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5"
-            @elseif ($action == 'detail') class="bg-white" value="{{ $surats[0]->dari }}" disabled
-            @elseif ($action == 'edit') class="bg-gray-50 border col-span-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5" value="{{ $surats[0]->dari }}" @endif
-            required>
+</div>
+<div x-data="{ disposisi: false }" @disposisi.window="disposisi=!disposisi">
+    <div class="grid grid-cols-7" x-show="disposisi">
+        <div class="mb-10 col-span-3 grid grid-cols-3">
+            <label for="email" class="my-auto font-medium text-gray-900">Diteruskan Ke</label>
+            <input type="text" id="" name="diteruskan_ke"
+                @if ($action == 'create') class="bg-gray-50 border col-span-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5"
+                    @elseif ($action == 'detail') class="bg-white" value="{{ $surats[0]->diteruskan_ke }}" disabled
+                    @elseif ($action == 'edit') class="bg-gray-50 border col-span-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5" value="{{ $surats[0]->diteruskan_ke }}" @endif
+                required>
+        </div>
+        <div class="mb-10 col-start-1 col-end-8 grid grid-cols-8">
+            <label for="" class="my-auto font-medium text-gray-900">Catatan</label>
+            <input type="text" id="" name="catatan"
+                @if ($action == 'create') class="bg-gray-50 ml-5 border col-start-2 col-end-9 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5"
+                    @elseif ($action == 'detail') class="bg-white ml-5" value="{{ $surats[0]->catatan }}" disabled
+                    @elseif ($action == 'edit') class="bg-gray-50 ml-5 border col-start-2 col-end-9 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5" value="{{ $surats[0]->catatan }}" @endif
+                required>
+        </div>
+        <div class="mb-10 col-span-3 grid grid-cols-3">
+            <label for="email" class="my-auto font-medium text-gray-900">Dari</label>
+            <input type="text" id="" name="dari"
+                @if ($action == 'create') class="bg-gray-50 border col-span-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5"
+                    @elseif ($action == 'detail') class="bg-white" value="{{ $surats[0]->dari }}" disabled
+                    @elseif ($action == 'edit') class="bg-gray-50 border col-span-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5" value="{{ $surats[0]->dari }}" @endif
+                required>
+        </div>
     </div>
 </div>
 @if ($action != 'detail')
