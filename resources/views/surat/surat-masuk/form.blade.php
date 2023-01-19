@@ -38,8 +38,9 @@
                 <select id="" name="sifat"
                     class="appearance-none bg-gray-50 border col-span-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2.5">
                     <option selected disabled>Pilih...</option>
-                    <option value="US">United States</option>
-                    <option value="CA">Canada</option>
+                    <option value="Sangat Segera">Sangat Segera</option>
+                    <option value="Segera">Segera</option>
+                    <option value="Biasa">Biasa</option>
                 </select>
                 <i class="absolute right-4 top-3 fa-solid fa-chevron-down ml-auto"></i>
             @elseif ($action == 'detail')
@@ -47,10 +48,19 @@
             @elseif ($action == 'edit')
                 <select id="" name="sifat"
                     class="appearance-none bg-gray-50 border col-span-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2.5">
-                    <option selected value="{{ $surats[0]->sifat }}">{{ $surats[0]->sifat }}</option>
-                    <option value="" disabled>Pilih...</option>
-                    <option value="US">United States</option>
-                    <option value="CA">Canada</option>
+                    @if ($surats[0]->sifat == 'Sangat Segera')
+                        <option selected value="Sangat Segera">Sangat Segera</option>
+                        <option value="Segera">Segera</option>
+                        <option value="Biasa">Biasa</option>
+                    @elseif ($surats[0]->sifat == 'Segera')
+                        <option value="Sangat Segera">Sangat Segera</option>
+                        <option selected value="Segera">Segera</option>
+                        <option value="Biasa">Biasa</option>
+                    @elseif ($surats[0]->sifat == 'Biasa')
+                        <option value="Sangat Segera">Sangat Segera</option>
+                        <option value="Segera">Segera</option>
+                        <option selected value="Biasa">Biasa</option>
+                    @endif
                 </select>
                 <i class="absolute right-4 top-3 fa-solid fa-chevron-down ml-auto"></i>
             @endif
@@ -85,7 +95,7 @@
         <input type="date" id="" name="waktu_diterima"
             @if ($action == 'create') class="bg-gray-50 ml-5 border col-start-2 col-end-9 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5"
             @elseif ($action == 'detail') class="bg-white ml-5" value="{{ $surats[0]->waktu_diterima }}" disabled
-            @elseif ($action == 'edit') class="bg-gray-50 ml-5 border col-span-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5" value="{{ $surats[0]->waktu_diterima }}" @endif
+            @elseif ($action == 'edit') class="bg-gray-50 ml-5 border  col-start-2 col-end-9 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5" value="{{ $surats[0]->waktu_diterima }}" @endif
             required>
     </div>
     <div class="mb-10 col-start-1 col-end-8 grid grid-cols-8">
@@ -93,7 +103,7 @@
         <input type="text" id="" name="file"
             @if ($action == 'create') class="bg-gray-50 ml-5 border col-start-2 col-end-9 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5"
             @elseif ($action == 'detail') class="bg-white ml-5" value="{{ $surats[0]->file }}" disabled
-            @elseif ($action == 'edit') class="bg-gray-50 ml-5 border col-span-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5" value="{{ $surats[0]->file }}" @endif
+            @elseif ($action == 'edit') class="bg-gray-50 ml-5 border  col-start-2 col-end-9 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5" value="{{ $surats[0]->file }}" @endif
             required>
     </div>
     <div class="mb-10 col-span-3 grid grid-cols-3">
@@ -109,7 +119,7 @@
         <input type="text" id="" name="catatan"
             @if ($action == 'create') class="bg-gray-50 ml-5 border col-start-2 col-end-9 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5"
             @elseif ($action == 'detail') class="bg-white ml-5" value="{{ $surats[0]->catatan }}" disabled
-            @elseif ($action == 'edit') class="bg-gray-50 ml-5 border col-span-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5" value="{{ $surats[0]->catatan }}" @endif
+            @elseif ($action == 'edit') class="bg-gray-50 ml-5 border col-start-2 col-end-9 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5" value="{{ $surats[0]->catatan }}" @endif
             required>
     </div>
     <div class="mb-10 col-span-3 grid grid-cols-3">

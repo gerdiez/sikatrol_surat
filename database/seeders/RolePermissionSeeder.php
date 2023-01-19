@@ -15,12 +15,6 @@ class RolePermissionSeeder extends Seeder
      */
     public function run()
     {
-        // $permission = Permission::create(['name' => 'edit articles']);
-        // $permission = Permission::create(['name' => 'edit articles']);
-        // $permission = Permission::create(['name' => 'edit articles']);
-        // Role::create(['name' => 'tata'])->givePermissionTo(['create', 'update', 'delete']);
-        // Role::create(['name' => 'unit'])->givePermissionTo(['create unit', 'update unit', 'delete unit']);
-        // Role::create(['name' => 'sekre'])->givePermissionTo(['update sekre']);
         Role::create([
             'name' => 'tata',
         ])->givePermissionTo(
