@@ -18,7 +18,7 @@
                 </div>
                 <input type="text" id="table-search-users"
                     class="block p-2 pl-10 w-80 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
-                    placeholder="Search for users">
+                    placeholder="Cari Surat Masuk">
             </div>
         </div>
         <div class="my-5 h-[70vh]">
