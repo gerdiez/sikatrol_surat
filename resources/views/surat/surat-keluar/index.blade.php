@@ -8,7 +8,7 @@
                     <button
                         class="inline-flex items-center text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-3 py-1.5"
                         type="button">
-                        <a href="{{ route('surat.masuk.create') }}">
+                        <a href="{{ route('surat.keluar.create') }}">
                             Tambah Surat
                         </a>
                     </button>
@@ -55,6 +55,9 @@
                         <th scope="col" class="py-3 px-6">
                             AKSI
                         </th>
+                        <th scope="col" class="py-3 px-6">
+                            STATUS
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -63,10 +66,83 @@
                             1
                         </td>
                         <th scope="row" class="flex items-center py-4 px-6 text-gray-900 whitespace-nowrap">
-                            SMXXXX
+                            SKXXXX
                         </th>
                         <td class="py-4 px-6">
-                            DSK/XX/XX/XX
+                            RGL/XX/XX/XX
+                        </td>
+                        <td class="py-4 px-6">
+                            DISKOMINFO
+                        </td>
+                        <td class="py-4 px-6">
+                            UNDANGAN
+                        </td>
+                        <td class="py-4 px-6">
+                            SOSIALISASI
+                        </td>
+                        <td class="py-4 px-6">
+                            PENTING
+                        </td>
+                        <td class="py-4 px-6">
+                            17 APRIL 2022
+                        </td>
+                        <td class="py-4 px-6">
+                            KASUBAG UMPEG
+                        </td>
+                        <td class="py-4 px-6">
+                            <a href="#" class="font-medium text-blue-600 hover:underline">Lihat</a>
+                            <a href="{{ route('surat.keluar.edit') }}" class="font-medium text-blue-600 hover:underline">Edit</a>
+                            <a href="#" class="font-medium text-blue-600 hover:underline">Hapus</a>
+                        </td>
+                        <td class="py-4 px-6">
+                            Belum dinomori
+                        </td>
+                        <tr class="bg-white border-b hover:bg-gray-50">
+                            <td class="p-4 w-4">
+                                1
+                            </td>
+                            <th scope="row" class="flex items-center py-4 px-6 text-gray-900 whitespace-nowrap">
+                                SKXXXX
+                            </th>
+                            <td class="py-4 px-6">
+                                RGL/XX/XX/XX
+                            </td>
+                            <td class="py-4 px-6">
+                                DISKOMINFO
+                            </td>
+                            <td class="py-4 px-6">
+                                UNDANGAN
+                            </td>
+                            <td class="py-4 px-6">
+                                SOSIALISASI
+                            </td>
+                            <td class="py-4 px-6">
+                                PENTING
+                            </td>
+                            <td class="py-4 px-6">
+                                17 APRIL 2022
+                            </td>
+                            <td class="py-4 px-6">
+                                KASUBAG UMPEG
+                            </td>
+                            <td class="py-4 px-6">
+                                <a href="#" class="font-medium text-blue-600 hover:underline">Lihat</a>
+                                <a href="#" class="font-medium text-blue-600 hover:underline">Edit</a>
+                                <a href="#" class="font-medium text-blue-600 hover:underline">Hapus</a>
+                            </td>
+                            <td class="py-4 px-6">
+                                Dalam Progress
+                            </td>
+                    </tr>
+                    <tr class="bg-white border-b hover:bg-gray-50">
+                        <td class="p-4 w-4">
+                            1
+                        </td>
+                        <th scope="row" class="flex items-center py-4 px-6 text-gray-900 whitespace-nowrap">
+                            SKXXXX
+                        </th>
+                        <td class="py-4 px-6">
+                            RGL/XX/XX/XX
                         </td>
                         <td class="py-4 px-6">
                             DISKOMINFO
@@ -91,7 +167,10 @@
                             <a href="#" class="font-medium text-blue-600 hover:underline">Edit</a>
                             <a href="#" class="font-medium text-blue-600 hover:underline">Hapus</a>
                         </td>
-                    </tr>
+                        <td class="py-4 px-6">
+                            Sudah Disetujui
+                        </td>
+                </tr>
                 </tbody>
             </table>
         </div>
