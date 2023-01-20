@@ -22,41 +22,43 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [IndexController::class, 'index']);
 
-Route::get('/login', [LoginController::class, 'index'])->name('login');
+Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [LoginController::class, 'login']);
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
-Route::resource('/surat-masuk', SuratMasukController::class, [
-    'names' => [
-        'index' => 'surat.masuk',
-        'create' => 'surat.masuk.create',
-        'store' => 'surat.masuk.store',
-        'show' => 'surat.masuk.show',
-        'update' => 'surat.masuk.update',
-        'destroy' => 'surat.masuk.destroy'
-    ]
-]);
-
-Route::resource('/surat-keluar', SuratKeluarController::class, [
-    'names' => [
-        'index' => 'surat.keluar',
-    ]
-]);
-
-Route::resource('/surat-perintah', SuratPerintahController::class, [
-    'names' => [
-        'index' => 'surat.perintah',
-    ]
-]);
-
-Route::resource('/surat-keputusan', SuratKeputusanController::class, [
-    'names' => [
-        'index' => 'surat.keputusan',
-    ]
-]);
-
-Route::resource('/surat-tugas', SuratTugasController::class, [
-    'names' => [
-        'index' => 'surat.tugas',
-    ]
-]);
+Route::middleware('auth')->group(function () {
+    Route::resource('/surat-masuk', SuratMasukController::class, [
+        'names' => [
+            'index' => 'surat.masuk',
+            'create' => 'surat.masuk.create',
+            'store' => 'surat.masuk.store',
+            'show' => 'surat.masuk.show',
+            'update' => 'surat.masuk.update',
+            'destroy' => 'surat.masuk.destroy'
+        ]
+    ]);
+    
+    Route::resource('/surat-keluar', SuratKeluarController::class, [
+        'names' => [
+            'index' => 'surat.keluar',
+        ]
+    ]);
+    
+    Route::resource('/surat-perintah', SuratPerintahController::class, [
+        'names' => [
+            'index' => 'surat.perintah',
+        ]
+    ]);
+    
+    Route::resource('/surat-keputusan', SuratKeputusanController::class, [
+        'names' => [
+            'index' => 'surat.keputusan',
+        ]
+    ]);
+    
+    Route::resource('/surat-tugas', SuratTugasController::class, [
+        'names' => [
+            'index' => 'surat.tugas',
+        ]
+    ]);
+});
