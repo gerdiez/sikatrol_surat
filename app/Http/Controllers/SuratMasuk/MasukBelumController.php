@@ -17,7 +17,7 @@ class MasukBelumController extends Controller
     {
         return view('surat.surat-masuk.belum-disposisi.index', [
             'title' => 'Surat Masuk',
-            'surats' => Surat::get(),
+            'surats' => Surat::where('disposisi', 'false')->get(),
         ]);
     }
 
