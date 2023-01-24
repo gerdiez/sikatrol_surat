@@ -110,7 +110,8 @@
         <div class="flex items-center mt-2" x-data="{ disposisi: false }">
             <input id="checked-checkbox" type="checkbox" name="disposisi" value="true"
                 x-on:click="disposisi = !disposisi; $dispatch('disposisi')"
-                class="w-6 h-6 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                class="w-6 h-6 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500"
+                @if ($action == 'detail') disable @endif>
             <div x-show="!disposisi">
                 <label for="checked-checkbox" class="ml-4 font-medium text-gray-900">Belum
                     Disposisi</label>
