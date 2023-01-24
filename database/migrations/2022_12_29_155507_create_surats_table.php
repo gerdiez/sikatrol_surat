@@ -24,11 +24,12 @@ return new class extends Migration
             $table->string('no_agenda');
             $table->date('tanggal_kegiatan');
             $table->string('kategori');
-            $table->date('waktu_diterima');
-            $table->string('file');
-            $table->string('diteruskan_ke');
-            $table->text('catatan');
-            $table->string('dari');
+            $table->string('perihal');
+            $table->string('upload');
+            $table->string('disposisi')->default('false');
+            $table->string('diteruskan_ke')->nullable();;
+            $table->text('catatan')->nullable();;
+            $table->string('dari')->nullable();;
         });
     }
 

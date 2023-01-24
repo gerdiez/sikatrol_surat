@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\SuratMasuk;
 
+use App\Http\Controllers\Controller;
 use App\Models\Surat;
 use Illuminate\Http\Request;
 
-class SuratMasukController extends Controller
+class MasukBelumController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +15,7 @@ class SuratMasukController extends Controller
      */
     public function index()
     {
-        return view('surat.surat-masuk.index', [
+        return view('surat.surat-masuk.belum-disposisi.index', [
             'title' => 'Surat Masuk',
             'surats' => Surat::get(),
         ]);
@@ -27,7 +28,7 @@ class SuratMasukController extends Controller
      */
     public function create()
     {
-        return view('surat.surat-masuk.create', [
+        return view('surat.surat-masuk.belum-disposisi.create', [
             'title' => 'Tambah Surat Masuk',
         ]);
     }
@@ -49,14 +50,12 @@ class SuratMasukController extends Controller
             'no_agenda' => 'required',
             'tanggal_kegiatan' => 'required',
             'kategori' => 'required',
-            'waktu_diterima' => 'required',
-            'file' => 'required',
-            'diteruskan_ke' => 'required',
-            'catatan' => 'required',
-            'dari' => 'required',
+            'perihal' => 'required',
+            'upload' => 'required',
+            'disposisi' => ''
         ]);
         Surat::create($validate);
-        return redirect('/surat-masuk');
+        return redirect('/surat-masuk/belum-disposisi');
     }
 
     /**
@@ -67,7 +66,7 @@ class SuratMasukController extends Controller
      */
     public function show($id)
     {
-        return view('surat.surat-masuk.detail', [
+        return view('surat.surat-masuk.belum-disposisi.detail', [
             'title' => 'Detail Surat Masuk',
             'surats' => Surat::where('id', $id)->get(),
         ]);
@@ -81,7 +80,7 @@ class SuratMasukController extends Controller
      */
     public function edit($id)
     {
-        return view('surat.surat-masuk.edit', [
+        return view('surat.surat-masuk.belum-disposisi.edit', [
             'title' => 'Edit Surat Masuk',
             'surats' => Surat::where('id', $id)->get(),
             'id' => $id
@@ -106,14 +105,12 @@ class SuratMasukController extends Controller
             'no_agenda' => 'required',
             'tanggal_kegiatan' => 'required',
             'kategori' => 'required',
-            'waktu_diterima' => 'required',
-            'file' => 'required',
-            'diteruskan_ke' => 'required',
-            'catatan' => 'required',
-            'dari' => 'required',
+            'perihal' => 'required',
+            'upload' => 'required',
+            'disposisi' => '',
         ]);
         Surat::where('id', $id)->update($validate);
-        return redirect('/surat-masuk');
+        return redirect('/surat-masuk/belum-disposisi');
     }
 
     /**
@@ -125,6 +122,6 @@ class SuratMasukController extends Controller
     public function destroy($id)
     {
         Surat::destroy($id);
-        return redirect('/surat-masuk');
+        return redirect('/surat-masuk/belum-disposisi');
     }
 }

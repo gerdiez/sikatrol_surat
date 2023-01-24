@@ -8,7 +8,7 @@
     <div class="p-5 rounded-lg bg-white">
         <div class="flex @can('tata usaha') justify-between @else justify-end @endcan items-center pb-4">
             @can('tata usaha')
-                <a href="{{ route('surat.masuk.create') }}"
+                <a href="{{ route('surat.masuk.belum.create') }}"
                     class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
                     Tambah Surat</a>
             @endcan
@@ -75,7 +75,7 @@
                                 {{ $surat->kategori }}
                             </td>
                             <td class="py-4 px-6">
-                                {{ $surat->waktu_diterima }}
+                                {{ $surat->perihal }}
                             </td>
                             <td class="py-4 px-6">
                                 {{ $surat->sifat }}
@@ -90,14 +90,14 @@
                                 <td class="py-4">
                                     @can('tata usaha')
                                         <div class="tooltip static hover:relative" data-tip="Lihat">
-                                            <a href="surat-masuk/{{ $surat->id }}"
+                                            <a href={{ route('surat.masuk.belum.show', $surat->id) }}
                                                 class="mr-1 text-blue-600 hover:bg-blue-300 hover:rounded-md">
                                                 <i class="fa-solid fa-eye rounded-md border border-blue-400 p-1"></i>
                                             </a>
                                         </div>
                                     @endcan
                                     <div class="tooltip static hover:relative" data-tip="Ubah">
-                                        <a href="surat-masuk/{{ $surat->id }}/edit"
+                                        <a href={{ route('surat.masuk.belum.edit', $surat->id) }}
                                             class="mr-1 text-orange-600 hover:bg-orange-300 hover:rounded-md">
                                             <i class="fa-solid fa-pen-to-square rounded-md border border-orange-400 p-1"></i>
                                         </a>
@@ -125,7 +125,7 @@
                                                             <span class="sr-only">Close modal</span>
                                                         </label>
                                                         <div class="p-6 text-center">
-                                                            <form action="{{ route('surat.masuk.destroy', $surat->id) }}"
+                                                            <form action="{{ route('surat.masuk.belum.destroy', $surat->id) }}"
                                                                 method="post">
                                                                 @method('delete')
                                                                 @csrf
@@ -158,7 +158,11 @@
                                 </td>
                             @endcanany
                             <td class="py-4 px-6">
-                                Disposisi
+                                @if ($surat->disposisi == 'true')
+                                    Sudah Disposisi
+                                @else
+                                    Belum Disposisi
+                                @endif
                             </td>
                         </tr>
                     @endforeach

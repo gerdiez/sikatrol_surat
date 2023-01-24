@@ -2,7 +2,7 @@
     <div class="mx-3 flex flex-wrap items-center justify-between">
         @yield('name')
         <div class="flex w-auto items-center gap-3">
-            <p class="text-gray-600 font-semibold">{{ auth()->user()->name }}<strong x-text="open"></strong></p>
+            <p class="text-gray-600 font-semibold">{{ auth()->user()->name }}
             <div class="dropdown-end dropdown">
                 <button tabIndex={0} type="button"
                     class="mr-3 flex rounded-full bg-gray-800 text-sm focus:ring-4 focus:ring-gray-300 md:mr-0">
