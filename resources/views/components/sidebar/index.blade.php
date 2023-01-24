@@ -13,7 +13,7 @@
                 <x-sidebar.menu-dropdown name="Surat Masuk" />
                 <ul class="space-y-1 py-1 hidden" :class="{ '!block': dropdown }">
                     <x-sidebar.sub-menu name="Belum Disposisi" route="{{ route('surat.masuk.belum') }}" />
-                    <x-sidebar.sub-menu name="Sudah Disposisi" route="#" />
+                    <x-sidebar.sub-menu name="Sudah Disposisi" route="{{ route('surat.masuk.sudah') }}" />
                 </ul>
             </li>
             <li x-data="{ dropdown: false }" :class="{ 'flex justify-end': !sidebarOpen }">

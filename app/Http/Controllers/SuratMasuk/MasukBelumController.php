@@ -41,21 +41,42 @@ class MasukBelumController extends Controller
      */
     public function store(Request $request)
     {
-        $validate = $request->validate([
-            'surat_dari' => 'required',
-            'jenis_surat' => 'required',
-            'no_surat' => 'required',
-            'tanggal_surat' => 'required',
-            'sifat' => 'required',
-            'no_agenda' => 'required',
-            'tanggal_kegiatan' => 'required',
-            'kategori' => 'required',
-            'perihal' => 'required',
-            'upload' => 'required',
-            'disposisi' => ''
-        ]);
-        Surat::create($validate);
-        return redirect('/surat-masuk/belum-disposisi');
+        if ($request->input('disposisi') == 'false') {
+            $validate = $request->validate([
+                'surat_dari' => 'required',
+                'jenis_surat' => 'required',
+                'no_surat' => 'required',
+                'tanggal_surat' => 'required',
+                'sifat' => 'required',
+                'no_agenda' => 'required',
+                'tanggal_kegiatan' => 'required',
+                'kategori' => 'required',
+                'perihal' => 'required',
+                'upload' => 'required',
+                'disposisi' => ''
+            ]);
+            Surat::create($validate);
+            return redirect('/surat-masuk/belum-disposisi');
+        } else {
+            $validate = $request->validate([
+                'surat_dari' => 'required',
+                'jenis_surat' => 'required',
+                'no_surat' => 'required',
+                'tanggal_surat' => 'required',
+                'sifat' => 'required',
+                'no_agenda' => 'required',
+                'tanggal_kegiatan' => 'required',
+                'kategori' => 'required',
+                'perihal' => 'required',
+                'upload' => 'required',
+                'disposisi' => '',
+                'diteruskan_ke' => 'required',
+                'catatan' => 'required',
+                'dari' => 'required',
+            ]);
+            Surat::create($validate);
+            return redirect('/surat-masuk/sudah-disposisi');
+        }
     }
 
     /**

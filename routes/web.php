@@ -3,6 +3,7 @@
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\SuratMasuk\MasukBelumController;
+use App\Http\Controllers\SuratMasuk\MasukSudahController;
 use App\Http\Controllers\SuratKeluarController;
 use App\Http\Controllers\SuratKeputusanController;
 use App\Http\Controllers\SuratPerintahController;
@@ -27,18 +28,32 @@ Route::post('/login', [LoginController::class, 'login']);
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::middleware('auth')->group(function () {
-    Route::resource('/surat-masuk/belum-disposisi', MasukBelumController::class, [
-        'names' => [
-            'index' => 'surat.masuk.belum',
-            'create' => 'surat.masuk.belum.create',
-            'store' => 'surat.masuk.belum.store',
-            'edit' => 'surat.masuk.belum.edit',
-            'show' => 'surat.masuk.belum.show',
-            'update' => 'surat.masuk.belum.update',
-            'destroy' => 'surat.masuk.belum.destroy'
-        ],
-        // 'except' => ['show', 'index']
-    ]);
+    Route::prefix('surat-masuk')->group(function () {
+        Route::resource('/belum-disposisi', MasukBelumController::class, [
+            'names' => [
+                'index' => 'surat.masuk.belum',
+                'create' => 'surat.masuk.belum.create',
+                'store' => 'surat.masuk.belum.store',
+                'edit' => 'surat.masuk.belum.edit',
+                'show' => 'surat.masuk.belum.show',
+                'update' => 'surat.masuk.belum.update',
+                'destroy' => 'surat.masuk.belum.destroy'
+            ],
+            // 'except' => ['show', 'index']
+        ]);
+    
+        Route::resource('/sudah-disposisi', MasukSudahController::class, [
+            'names' => [
+                'index' => 'surat.masuk.sudah',
+                'create' => 'surat.masuk.sudah.create',
+                'store' => 'surat.masuk.sudah.store',
+                'edit' => 'surat.masuk.sudah.edit',
+                'show' => 'surat.masuk.sudah.show',
+                'update' => 'surat.masuk.sudah.update',
+                'destroy' => 'surat.masuk.sudah.destroy'
+            ],
+        ]);
+    });
 
     Route::resource('/surat-keluar', SuratKeluarController::class, [
         'names' => [
