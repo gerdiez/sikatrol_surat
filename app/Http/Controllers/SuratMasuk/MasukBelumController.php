@@ -41,7 +41,7 @@ class MasukBelumController extends Controller
      */
     public function store(Request $request)
     {
-        if ($request->input('disposisi') == 'false') {
+        if ($request->input('disposisi') == null) {
             $validate = $request->validate([
                 'surat_dari' => 'required',
                 'jenis_surat' => 'required',
