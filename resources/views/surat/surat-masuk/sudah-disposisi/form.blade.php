@@ -142,9 +142,21 @@
     <div class="grid grid-cols-7" x-show="disposisi">
         <div class="mb-10 col-span-3 grid grid-cols-3">
             <label for="email" class="my-auto font-medium text-gray-900">Diteruskan Ke</label>
-            <input type="text" id="" name="diteruskan_ke"
-                @if ($action == 'detail') class="bg-white" value="{{ $surats[0]->diteruskan_ke }}" disabled
-                    @elseif ($action == 'edit') class="bg-gray-50 border @error('diteruskan_ke') border-red-600 @enderror col-span-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5" value="{{ $surats[0]->diteruskan_ke }}" @endif>
+            @if ($action == 'detail')
+                <input class="bg-white" value="{{ $surats[0]->diteruskan_ke }}" disabled />
+            @elseif ($action == 'edit')
+                <select id="" name="diteruskan_ke" required
+                    class="appearance-none bg-gray-50 border @error('diteruskan_ke') border-red-600 @enderror  col-span-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2.5">
+                    @foreach ($unitKerja as $unit)
+                        @if ($surats[0]->diteruskan_ke == $unit)
+                            <option selected value="{{ $unit }}">{{ $unit }}</option>
+                        @else
+                            <option value="{{ $unit }}">{{ $unit }}</option>
+                        @endif
+                    @endforeach
+                </select>
+                <i class="absolute right-4 top-3 fa-solid fa-chevron-down ml-auto"></i>
+            @endif
             @error('diteruskan_ke')
                 <p class="col-start-2 col-end-4 mt-2 text-xs text-red-600 font-medium">{{ $message }}</p>
             @enderror

@@ -13,17 +13,37 @@ class MasukSudahController extends Controller
     public function index()
     {
         $surat = Surat::latest();
-        if (request('search')) {
-            $surat->where('jenis_surat', 'Surat Masuk')
-                ->where('disposisi', 'true')
-                ->where('perihal', 'like', '%' . request('search') . '%');
+
+        if (Auth::user()->hasRole('unit')) {
+            $name = Auth::user()->name;
+            $surat->where('disposisi', 'true')
+                ->where('jenis_surat', 'Surat Masuk')
+                ->where('diteruskan_ke', $name);
         } else {
-            $surat->where('disposisi', 'true')->where('jenis_surat', 'Surat Masuk');
+            if (request('search')) {
+                $surat->where('jenis_surat', 'Surat Masuk')
+                    ->where('disposisi', 'true')
+                    ->where('perihal', 'like', '%' . request('search') . '%');
+            } else {
+                $surat->where('disposisi', 'true')
+                    ->where('jenis_surat', 'Surat Masuk');
+            }
         }
+
+        // switch (Auth::user()->name) {
+        //     case 'Sekretaris Kecamatan':
+        //         $surat->where('disposisi', 'true')
+        //             ->where('jenis_surat', 'Surat Masuk')
+        //             ->where('diteruskan_ke', 'Sekretaris Kecamatan');
+        //         break;
+        //     default:
+        //         break;
+        // }
+
         return view('surat.surat-masuk.sudah-disposisi.index', [
             'title' => 'Surat Masuk',
             'surats' => $surat->get(),
-            'search' => request('search')
+            'search' => request('search'),
         ]);
     }
 
@@ -37,10 +57,14 @@ class MasukSudahController extends Controller
 
     public function edit($id)
     {
+        $unitKerja = [
+            'Umpeg', 'Kesejahteraan Sosial', 'Pemberdayaan Masyarakat', 'Pemerintahan', 'Tramtib', 'Kelurahan Ancol', 'Kelurahan Balonggede', 'Kelurahan Ciseureuh', 'Kelurahan Cigereleng', 'Kelurahan Ciateul', 'Kelurahan Pungkur', 'Kelurahan Pasirluyu'
+        ];
         return view('surat.surat-masuk.sudah-disposisi.edit', [
             'title' => 'Edit Surat Masuk',
             'surats' => Surat::where('id', $id)->get(),
-            'id' => $id
+            'id' => $id,
+            'unitKerja' => $unitKerja
         ]);
     }
 

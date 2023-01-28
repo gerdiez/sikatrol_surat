@@ -49,9 +49,14 @@ class MasukBelumController extends Controller
         ]);
 
         if ($request->input('disposisi') == true) {
-            $validate['diteruskan_ke'] = '';
-            $validate['catatan'] = '';
-            $validate['dari'] = '';
+            $request->validate([
+                'diteruskan_ke' => 'required',
+                'catatan' => 'required',
+                'dari' => 'required',
+            ]);
+            $validate['diteruskan_ke'] = $request->input('diteruskan_ke');
+            $validate['catatan'] = $request->input('catatan');
+            $validate['dari'] = $request->input('dari');
         }
 
         $fileName = $request->file('file')->getClientOriginalName();
