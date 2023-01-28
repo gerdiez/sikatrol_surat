@@ -25,7 +25,8 @@ return new class extends Migration
             $table->date('tanggal_kegiatan');
             $table->string('kategori');
             $table->string('perihal');
-            $table->string('upload');
+            $table->string('file');
+            $table->string('file_name');
             $table->string('disposisi')->default('false');
             $table->string('diteruskan_ke')->nullable();;
             $table->text('catatan')->nullable();;

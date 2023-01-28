@@ -2,17 +2,12 @@
 
 namespace App\Http\Controllers\SuratMasuk;
 
-use App\Http\Controllers\Controller;
 use App\Models\Surat;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class MasukBelumController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         return view('surat.surat-masuk.belum-disposisi.index', [
@@ -21,11 +16,6 @@ class MasukBelumController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         return view('surat.surat-masuk.belum-disposisi.create', [
@@ -33,12 +23,6 @@ class MasukBelumController extends Controller
         ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         if ($request->input('disposisi') == null) {
@@ -52,9 +36,12 @@ class MasukBelumController extends Controller
                 'tanggal_kegiatan' => 'required',
                 'kategori' => 'required',
                 'perihal' => 'required',
-                'upload' => 'required',
+                'file' => 'required|mimes:csv,txt,xlx,xls,pdf|max:2048',
                 'disposisi' => ''
             ]);
+            $fileName = $request->file('file')->getClientOriginalName();
+            $validate['file_name'] = $fileName;
+            $validate['file'] = $request->file('file')->storeAs('files', $fileName);
             Surat::create($validate);
             return redirect('/surat-masuk/belum-disposisi');
         } else {
@@ -68,23 +55,20 @@ class MasukBelumController extends Controller
                 'tanggal_kegiatan' => 'required',
                 'kategori' => 'required',
                 'perihal' => 'required',
-                'upload' => 'required',
+                'file' => 'required|mimes:csv,txt,xlx,xls,pdf|max:2048',
                 'disposisi' => '',
-                'diteruskan_ke' => 'required',
-                'catatan' => 'required',
-                'dari' => 'required',
+                'diteruskan_ke' => '',
+                'catatan' => '',
+                'dari' => '',
             ]);
+            $fileName = $request->file('file')->getClientOriginalName();
+            $validate['file_name'] = $fileName;
+            $validate['file'] = $request->file('file')->storeAs('files', $fileName);
             Surat::create($validate);
             return redirect('/surat-masuk/sudah-disposisi');
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Surat  $surat
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         return view('surat.surat-masuk.belum-disposisi.detail', [
@@ -93,12 +77,6 @@ class MasukBelumController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Surat  $surat
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         return view('surat.surat-masuk.belum-disposisi.edit', [
@@ -108,38 +86,17 @@ class MasukBelumController extends Controller
         ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Surat  $surat
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         $validate = $request->validate([
-            'surat_dari' => 'required',
-            'jenis_surat' => 'required',
-            'no_surat' => 'required',
-            'tanggal_surat' => 'required',
-            'sifat' => 'required',
-            'no_agenda' => 'required',
-            'tanggal_kegiatan' => 'required',
-            'kategori' => 'required',
-            'perihal' => 'required',
-            'upload' => 'required',
-            'disposisi' => '',
+            'diteruskan_ke' => 'required',
+            'catatan' => 'required',
+            'dari' => 'required',
         ]);
         Surat::where('id', $id)->update($validate);
         return redirect('/surat-masuk/belum-disposisi');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Surat  $surat
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         Surat::destroy($id);

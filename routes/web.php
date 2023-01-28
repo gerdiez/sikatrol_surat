@@ -1,14 +1,15 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\FileUploadController;
+use App\Http\Controllers\SuratTugasController;
+use App\Http\Controllers\SuratKeluarController;
+use App\Http\Controllers\SuratPerintahController;
+use App\Http\Controllers\SuratKeputusanController;
 use App\Http\Controllers\SuratMasuk\MasukBelumController;
 use App\Http\Controllers\SuratMasuk\MasukSudahController;
-use App\Http\Controllers\SuratKeluarController;
-use App\Http\Controllers\SuratKeputusanController;
-use App\Http\Controllers\SuratPerintahController;
-use App\Http\Controllers\SuratTugasController;
-use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------

@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('name')
-    <x-back-page route="{{ route('surat.masuk.sudah') }}" name="DETAIL" />
+    <x-back-page route="{{ route('surat.masuk.sudah') }}" name="DETAIL SURAT MASUK SUDAH DISPOSISI" />
 @endsection
 
 @section('content')

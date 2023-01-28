@@ -83,10 +83,21 @@
     </div>
     <div class="mb-10 col-span-3 grid grid-cols-3">
         <label for="" class="my-auto font-medium text-gray-900">Upload</label>
-        <input type="file" id="" name="upload"
-            @if ($action == 'detail') class="bg-white" value="{{ $surats[0]->upload }}" disabled
-            @elseif ($action == 'edit') class="bg-gray-50 col-span-2 border  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5" value="{{ $surats[0]->upload }}" @endif
-            required>
+        @if ($action == 'detail')
+            <a href="{{ asset('storage/' . $surats[0]->file) }}" target="_blank"
+                class="col-start-2 col-end-4 my-2 text-blue-600 text-sm underline hover:brightness-50">{{ $surats[0]->file_name }}</a>
+        @elseif ($action == 'edit')
+            <a href="{{ asset('storage/' . $surats[0]->file) }}" target="_blank"
+                class="col-start-2 col-end-4 my-2 text-blue-600 text-sm underline hover:brightness-50">{{ $surats[0]->file_name }}</a>
+            <input type="hidden" name="oldFile" value="{{ $surats[0]->file }}">
+            <input type="file" name="file"
+                class="col-start-2 col-end-4 bg-gray-50 col-span-2 border @error('file') border-red-600 @enderror  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5"
+                required>
+            @error('file')
+                <p class="col-start-2 col-end-4 mt-2 text-xs text-red-600 font-medium">Maksimum File 2MB & Extension
+                    csv,txt,xlx,xls & pdf</p>
+            @enderror
+        @endif
     </div>
     <div class="mb-10 col-start-5 col-end-8">
         <div class="flex items-center mt-2" x-data="{ disposisi: true }">
