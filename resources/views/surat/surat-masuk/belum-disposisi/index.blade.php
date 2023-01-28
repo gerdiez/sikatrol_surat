@@ -13,23 +13,23 @@
                     Tambah Surat</a>
             @endcan
             <form action="{{ route('surat.masuk.belum') }}" method="get">
-                <div class="relative">
-                    <div class="absolute pl-10 top-[0.04rem]">
+                <div class="relative w-96 flex">
+                    <div class="relative pl-10 text-gray-900 bg-gray-50 rounded-lg rounded-r-none border border-r-0 border-gray-300">
                         <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
                             <i class="fa-solid fa-magnifying-glass"></i>
                         </div>
-                        <select name="" class="appearance-none text-sm text-gray-90 py-2 pr-8 bg-gray-50">
+                        <select name="category" class="appearance-none text-sm text-gray-90 py-2 pr-8 bg-gray-50 focus:outline-none">
                             <option value="no_surat">No Surat</option>
-                            <option value="surat_dari">Tgl Kegiatan</option>
+                            <option value="surat_dari">Surat Dari</option>
                             <option value="kategori">Kategori</option>
                             <option value="perihal">Perihal</option>
                             <option value="sifat">Sifat</option>
-                            <option value="tanggal_surat">Tgl Surat</option>
+                            <option value="tanggal_kegiatan">Tgl Kegiatan</option>
                         </select>
                         <i class="absolute right-2 top-2 fa-solid fa-chevron-down ml-auto"></i>
                     </div>
                     <input type="text" name="search"
-                        class="block p-2 pl-40 w-96 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+                        class="block p-2 text-sm text-gray-900 bg-gray-50 rounded-lg rounded-l-none border border-l-0 border-gray-300 focus:outline-none"
                         value="{{ request('search') }}" placeholder="Cari Surat Masuk">
                 </div>
             </form>

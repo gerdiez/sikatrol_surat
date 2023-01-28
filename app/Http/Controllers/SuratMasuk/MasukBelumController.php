@@ -14,7 +14,7 @@ class MasukBelumController extends Controller
         if (request('search')) {
             $surat->where('jenis_surat', 'Surat Masuk')
                 ->where('disposisi', 'false')
-                ->where('perihal', 'like', '%' . request('search') . '%');
+                ->where(request('category'), 'like', '%' . request('search') . '%');
         } else {
             $surat->where('disposisi', 'false')->where('jenis_surat', 'Surat Masuk');
         }
