@@ -1,9 +1,9 @@
 <?php
 
+use App\Http\Controllers\AgendaController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\LoginController;
-use App\Http\Controllers\FileUploadController;
 use App\Http\Controllers\SuratTugasController;
 use App\Http\Controllers\SuratKeluarController;
 use App\Http\Controllers\SuratPerintahController;
@@ -27,6 +27,12 @@ Route::get('/', [IndexController::class, 'index']);
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [LoginController::class, 'login']);
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+Route::resource('/agenda', AgendaController::class, [
+    'names' => [
+        'index' => 'agenda',
+    ]
+]);
 
 Route::middleware('auth')->group(function () {
     Route::prefix('surat-masuk')->group(function () {
