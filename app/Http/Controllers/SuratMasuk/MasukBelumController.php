@@ -18,10 +18,21 @@ class MasukBelumController extends Controller
         } else {
             $surat->where('disposisi', 'false')->where('jenis_surat', 'Surat Masuk');
         }
+
+        $category = [
+            'no_surat' => 'No Surat',
+            'surat_dari' => 'Surat Dari',
+            'kategori' => 'Kategori',
+            'perihal' => 'Perihal',
+            'sifat' => 'Sifat',
+            'tanggal_kegiatan' => 'Tgl Kegiatan',
+        ];
+
         return view('surat.surat-masuk.belum-disposisi.index', [
             'title' => 'Surat Masuk',
             'surats' => $surat->get(),
-            'search' => request('search')
+            'search' => request('search'),
+            'categories' => $category
         ]);
     }
 

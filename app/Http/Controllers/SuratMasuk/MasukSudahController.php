@@ -29,10 +29,21 @@ class MasukSudahController extends Controller
             }
         }
 
+        $category = [
+            'no_surat' => 'No Surat',
+            'surat_dari' => 'Surat Dari',
+            'kategori' => 'Kategori',
+            'perihal' => 'Perihal',
+            'sifat' => 'Sifat',
+            'tanggal_kegiatan' => 'Tgl Kegiatan',
+            'diteruskan_ke' => 'Diteruskan Ke',
+        ];
+
         return view('surat.surat-masuk.sudah-disposisi.index', [
             'title' => 'Surat Masuk',
             'surats' => $surat->get(),
             'search' => request('search'),
+            'categories' => $category
         ]);
     }
 
