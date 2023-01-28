@@ -30,16 +30,6 @@ class MasukSudahController extends Controller
             }
         }
 
-        // switch (Auth::user()->name) {
-        //     case 'Sekretaris Kecamatan':
-        //         $surat->where('disposisi', 'true')
-        //             ->where('jenis_surat', 'Surat Masuk')
-        //             ->where('diteruskan_ke', 'Sekretaris Kecamatan');
-        //         break;
-        //     default:
-        //         break;
-        // }
-
         return view('surat.surat-masuk.sudah-disposisi.index', [
             'title' => 'Surat Masuk',
             'surats' => $surat->get(),
