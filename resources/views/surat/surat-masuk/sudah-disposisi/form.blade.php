@@ -43,7 +43,7 @@
                 <input class="bg-white" value="{{ $surats[0]->sifat }}" disabled />
             @elseif ($action == 'edit')
                 <select id="" name="sifat" required
-                    class="appearance-none bg-gray-50 border @error('file') border-red-600 @enderror  col-span-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2.5">
+                    class="appearance-none bg-gray-50 border @error('sifat') border-red-600 @enderror  col-span-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2.5">
                     @if ($surats[0]->sifat == 'Sangat Segera')
                         <option selected value="Sangat Segera">Sangat Segera</option>
                         <option value="Segera">Segera</option>
@@ -114,9 +114,8 @@
             <a href="{{ asset('storage/' . $surats[0]->file) }}" target="_blank"
                 class="col-start-2 col-end-4 my-2 text-blue-600 text-sm underline hover:brightness-50">{{ $surats[0]->file_name }}</a>
             <input type="hidden" name="oldFile" value="{{ $surats[0]->file }}">
-            <input type="file" name="file"
-                class="col-start-2 col-end-4 bg-gray-50 col-span-2 border @error('file') border-red-600 @enderror  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5"
-                required>
+            <input type="file" name="file" value="{{ $surats[0]->file }}"
+                class="col-start-2 col-end-4 bg-gray-50 col-span-2 border @error('file') border-red-600 @enderror  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5">
             @error('file')
                 <p class="col-start-2 col-end-4 mt-2 text-xs text-red-600 font-medium">Maksimum File 2MB & Extension
                     csv,txt,xlx,xls & pdf</p>

@@ -12,15 +12,11 @@ class MasukBelumController extends Controller
     {
         $surat = Surat::latest();
         if (request('search')) {
-            $surat->where('no_surat', 'like', '%' . request('search') . '%')
-                ->orWhere('jenis_surat', 'like', '%' . request('search') . '%')
-                ->orWhere('kategori', 'like', '%' . request('search') . '%')
-                ->orWhere('perihal', 'like', '%' . request('search') . '%')
-                ->orWhere('sifat', 'like', '%' . request('search') . '%')
-                ->orWhere('tanggal_kegiatan', 'like', '%' . request('search') . '%')
-                ->orWhere('diteruskan_ke', 'like', '%' . request('search') . '%');
+            $surat->where('jenis_surat', 'Surat Masuk')
+                ->where('disposisi', 'false')
+                ->where('no_surat', 'like', '%' . request('search') . '%');
         } else {
-            $surat->where('disposisi', false);
+            $surat->where('disposisi', 'false')->where('jenis_surat', 'Surat Masuk');
         }
         return view('surat.surat-masuk.belum-disposisi.index', [
             'title' => 'Surat Masuk',
@@ -89,8 +85,9 @@ class MasukBelumController extends Controller
             'catatan' => 'required',
             'dari' => 'required',
         ]);
+        $validate['disposisi'] = 'true';
         Surat::where('id', $id)->update($validate);
-        return redirect('/surat-masuk/belum-disposisi');
+        return redirect('/surat-masuk/sudah-disposisi');
     }
 
     public function destroy($id)

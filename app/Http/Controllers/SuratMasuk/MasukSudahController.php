@@ -11,9 +11,18 @@ class MasukSudahController extends Controller
 {
     public function index()
     {
+        $surat = Surat::latest();
+        if (request('search')) {
+            $surat->where('jenis_surat', 'Surat Masuk')
+                ->where('disposisi', 'true')
+                ->where('no_surat', 'like', '%' . request('search') . '%');
+        } else {
+            $surat->where('disposisi', 'true')->where('jenis_surat', 'Surat Masuk');
+        }
         return view('surat.surat-masuk.sudah-disposisi.index', [
             'title' => 'Surat Masuk',
-            'surats' => Surat::where('disposisi', 'true')->get(),
+            'surats' => $surat->get(),
+            'search' => request('search')
         ]);
     }
 
@@ -36,6 +45,7 @@ class MasukSudahController extends Controller
 
     public function update(Request $request, $id)
     {
+
         $validate = $request->validate([
             'surat_dari' => 'required',
             'jenis_surat' => 'required',
@@ -46,18 +56,23 @@ class MasukSudahController extends Controller
             'tanggal_kegiatan' => 'required',
             'kategori' => 'required',
             'perihal' => 'required',
-            'file' => 'required|mimes:csv,txt,xlx,xls,pdf|max:2048',
+            'file' => 'mimes:csv,txt,xlx,xls,pdf|max:2048',
             'disposisi' => '',
             'diteruskan_ke' => '',
             'catatan' => '',
             'dari' => '',
         ]);
-        if ($request->oldImage) {
-            Storage::delete($request->oldImage);
+        if ($request->file('file')) {
+            if ($request->oldImage) {
+                Storage::delete($request->oldImage);
+            }
+            $fileName = $request->file('file')->getClientOriginalName();
+            $validate['file_name'] = $fileName;
+            $validate['file'] = $request->file('file')->storeAs('files', $fileName);
         }
-        $fileName = $request->file('file')->getClientOriginalName();
-        $validate['file_name'] = $fileName;
-        $validate['file'] = $request->file('file')->storeAs('files', $fileName);
+
+        $validate['disposisi'] = 'true';
+
         Surat::where('id', $id)->update($validate);
         return redirect('/surat-masuk/sudah-disposisi');
     }
