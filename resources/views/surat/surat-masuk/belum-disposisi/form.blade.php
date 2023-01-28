@@ -70,8 +70,7 @@
         <label for="email" class="my-auto font-medium text-gray-900">Tanggal Kegiatan</label>
         <input type="date" name="tanggal_kegiatan"
             @if ($action == 'create') class="bg-gray-50 border  @error('tanggal_kegiatan') border-red-600 @enderror col-span-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5"
-            @elseif ($action == 'detail') class="bg-white" value="{{ $surats[0]->tanggal_kegiatan }}" disabled @endif
-            required>
+            @elseif ($action == 'detail') class="bg-white" value="{{ $surats[0]->tanggal_kegiatan }}" disabled @endif>
         @error('tanggal_kegiatan')
             <p class="col-start-2 col-end-4 mt-2 text-xs text-red-600 font-medium">{{ $message }}</p>
         @enderror
@@ -104,7 +103,7 @@
                 required>
             @error('file')
                 <p class="col-start-2 col-end-4 mt-2 text-xs text-red-600 font-medium">Maksimum File 2MB & Extension
-                    csv,txt,xlx,xls & pdf</p>
+                    pdf,docx,xlsx,jpg,jpeg,png</p>
             @enderror
         @elseif($action == 'detail')
             <a href="{{ asset('storage/' . $surats[0]->file) }}" target="_blank"

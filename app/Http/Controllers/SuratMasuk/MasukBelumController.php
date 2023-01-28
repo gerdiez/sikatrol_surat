@@ -41,10 +41,10 @@ class MasukBelumController extends Controller
             'tanggal_surat' => 'required',
             'sifat' => 'required',
             'no_agenda' => 'required',
-            'tanggal_kegiatan' => 'required',
+            'tanggal_kegiatan' => '',
             'kategori' => 'required',
             'perihal' => 'required',
-            'file' => 'required|mimes:csv,txt,xlx,xls,pdf|max:2048',
+            'file' => 'required|mimes:pdf,docx,xlsx,jpg,jpeg,png|max:2048',
             'disposisi' => ''
         ]);
 

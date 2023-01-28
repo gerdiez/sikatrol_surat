@@ -8,11 +8,13 @@
     </div>
     <nav class="flex-1 mx-4 flex flex-col">
         <ul class="mt-14 text-gray-600 text-base font-normal cursor-pointer">
-            <x-sidebar.menu name="Agenda" route="#"/>
+            <x-sidebar.menu name="Agenda" route="#" />
             <li x-data="{ dropdown: false }" :class="{ 'flex justify-end': !sidebarOpen }">
                 <x-sidebar.menu-dropdown name="Surat Masuk" />
                 <ul class="space-y-1 py-1 hidden" :class="{ '!block': dropdown }">
-                    <x-sidebar.sub-menu name="Belum Disposisi" route="{{ route('surat.masuk.belum') }}" />
+                    @canany(['tata usaha', 'sekretaris'])
+                        <x-sidebar.sub-menu name="Belum Disposisi" route="{{ route('surat.masuk.belum') }}" />
+                    @endcanany
                     <x-sidebar.sub-menu name="Sudah Disposisi" route="{{ route('surat.masuk.sudah') }}" />
                 </ul>
             </li>

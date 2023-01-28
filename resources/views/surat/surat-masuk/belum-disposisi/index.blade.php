@@ -48,9 +48,6 @@
                         <th scope="col" class="py-3 px-6">
                             TGL KEGIATAN
                         </th>
-                        <th scope="col" class="py-3 px-6">
-                            DITERUSKAN KE
-                        </th>
                         @canany(['tata usaha', 'sekretaris'])
                             <th scope="col" class="py-3 px-6">
                                 AKSI
@@ -91,9 +88,6 @@
                                 </td>
                                 <td class="py-4 px-6">
                                     {{ $surat->tanggal_kegiatan }}
-                                </td>
-                                <td class="py-4 px-6">
-                                    {{ $surat->diteruskan_ke }}
                                 </td>
                                 @canany(['tata usaha', 'sekretaris'])
                                     <td class="py-4">

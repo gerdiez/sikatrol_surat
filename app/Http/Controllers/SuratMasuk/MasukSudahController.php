@@ -5,6 +5,7 @@ namespace App\Http\Controllers\SuratMasuk;
 use App\Models\Surat;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class MasukSudahController extends Controller
@@ -45,33 +46,39 @@ class MasukSudahController extends Controller
 
     public function update(Request $request, $id)
     {
-
-        $validate = $request->validate([
-            'surat_dari' => 'required',
-            'jenis_surat' => 'required',
-            'no_surat' => 'required',
-            'tanggal_surat' => 'required',
-            'sifat' => 'required',
-            'no_agenda' => 'required',
-            'tanggal_kegiatan' => 'required',
-            'kategori' => 'required',
-            'perihal' => 'required',
-            'file' => 'mimes:csv,txt,xlx,xls,pdf|max:2048',
-            'disposisi' => '',
-            'diteruskan_ke' => '',
-            'catatan' => '',
-            'dari' => '',
-        ]);
-        if ($request->file('file')) {
-            if ($request->oldImage) {
-                Storage::delete($request->oldImage);
+        if (Auth::user()->hasRole('sekre')) {
+            $validate = $request->validate([
+                'diteruskan_ke' => '',
+                'catatan' => '',
+                'dari' => '',
+            ]);
+        } else {
+            $validate = $request->validate([
+                'surat_dari' => 'required',
+                'jenis_surat' => 'required',
+                'no_surat' => 'required',
+                'tanggal_surat' => 'required',
+                'sifat' => 'required',
+                'no_agenda' => 'required',
+                'tanggal_kegiatan' => '',
+                'kategori' => 'required',
+                'perihal' => 'required',
+                'file' => 'mimes:pdf,docx,xlsx,jpg,jpeg,png|max:2048',
+                'disposisi' => '',
+                'diteruskan_ke' => '',
+                'catatan' => '',
+                'dari' => '',
+            ]);
+            if ($request->file('file')) {
+                if ($request->oldImage) {
+                    Storage::delete($request->oldImage);
+                }
+                $fileName = $request->file('file')->getClientOriginalName();
+                $validate['file_name'] = $fileName;
+                $validate['file'] = $request->file('file')->storeAs('files', $fileName);
             }
-            $fileName = $request->file('file')->getClientOriginalName();
-            $validate['file_name'] = $fileName;
-            $validate['file'] = $request->file('file')->storeAs('files', $fileName);
+            $validate['disposisi'] = 'true';
         }
-
-        $validate['disposisi'] = 'true';
 
         Surat::where('id', $id)->update($validate);
         return redirect('/surat-masuk/sudah-disposisi');

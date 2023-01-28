@@ -22,15 +22,15 @@ return new class extends Migration
             $table->date('tanggal_surat');
             $table->string('sifat');
             $table->string('no_agenda');
-            $table->date('tanggal_kegiatan');
+            $table->date('tanggal_kegiatan')->nullable();
             $table->string('kategori');
             $table->string('perihal');
             $table->string('file');
             $table->string('file_name');
             $table->string('disposisi')->default('false');
-            $table->string('diteruskan_ke')->nullable();;
-            $table->text('catatan')->nullable();;
-            $table->string('dari')->nullable();;
+            $table->string('diteruskan_ke')->nullable();
+            $table->text('catatan')->nullable();
+            $table->string('dari')->nullable();
         });
     }
 
