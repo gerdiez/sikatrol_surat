@@ -6,7 +6,7 @@
 
 @section('content')
     <div class="p-5 rounded-lg bg-white">
-        <div class="flex @can('tata usaha') justify-between @else justify-end @endcan items-center pb-4">
+        <div class="flex @can('tata usaha') justify-between @else justify-end @endcan items-center">
             @can('tata usaha')
                 <a href="{{ route('surat.masuk.belum.create') }}"
                     class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
@@ -23,6 +23,19 @@
                 </div>
             </form>
         </div>
+        @if (session()->has('create'))
+            <div class="p-4 mb-4 text-sm text-green-700 font-medium rounded-lg bg-green-50">
+                {{ session('create') }}
+            </div>
+        @elseif (session()->has('edit'))
+            <div class="p-4 mb-4 text-sm text-orange-700 font-medium rounded-lg bg-orange-50">
+                {{ session('edit') }}
+            </div>
+        @elseif (session()->has('delete'))
+            <div class="p-4 mb-4 text-sm text-red-700 font-medium rounded-lg bg-red-50">
+                {{ session('delete') }}
+            </div>
+        @endif
         <div class="my-5 h-[70vh]">
             <table class="w-full text-sm border border-gray-200 text-left text-gray-500">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 text-center">

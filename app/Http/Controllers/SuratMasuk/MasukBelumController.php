@@ -58,7 +58,12 @@ class MasukBelumController extends Controller
         $validate['file_name'] = $fileName;
         $validate['file'] = $request->file('file')->storeAs('files', $fileName);
         Surat::create($validate);
-        return redirect('/surat-masuk/sudah-disposisi');
+
+        if ($request->input('disposisi') == true) {
+            return redirect('/surat-masuk/sudah-disposisi')->with('create', 'Data telah berhasil ditambahkan');
+        } else {
+            return redirect('/surat-masuk/belum-disposisi')->with('create', 'Data telah berhasil ditambahkan');
+        }
     }
 
     public function show($id)
@@ -87,12 +92,12 @@ class MasukBelumController extends Controller
         ]);
         $validate['disposisi'] = 'true';
         Surat::where('id', $id)->update($validate);
-        return redirect('/surat-masuk/sudah-disposisi');
+        return redirect('/surat-masuk/sudah-disposisi')->with('edit', 'Data telah berhasil diubah');
     }
 
     public function destroy($id)
     {
         Surat::destroy($id);
-        return redirect('/surat-masuk/belum-disposisi');
+        return redirect('/surat-masuk/belum-disposisi')->with('delete', 'Data telah berhasil dihapus');
     }
 }

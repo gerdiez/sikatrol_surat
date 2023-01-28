@@ -81,12 +81,12 @@ class MasukSudahController extends Controller
         }
 
         Surat::where('id', $id)->update($validate);
-        return redirect('/surat-masuk/sudah-disposisi');
+        return redirect('/surat-masuk/sudah-disposisi')->with('edit', 'Data telah berhasil diubah');
     }
 
     public function destroy($id)
     {
         Surat::destroy($id);
-        return redirect('/surat-masuk/sudah-disposisi');
+        return redirect('/surat-masuk/sudah-disposisi')->with('delete', 'Data telah berhasil dihapus');
     }
 }
