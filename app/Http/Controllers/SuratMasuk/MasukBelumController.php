@@ -10,9 +10,22 @@ class MasukBelumController extends Controller
 {
     public function index()
     {
+        $surat = Surat::latest();
+        if (request('search')) {
+            $surat->where('no_surat', 'like', '%' . request('search') . '%')
+                ->orWhere('jenis_surat', 'like', '%' . request('search') . '%')
+                ->orWhere('kategori', 'like', '%' . request('search') . '%')
+                ->orWhere('perihal', 'like', '%' . request('search') . '%')
+                ->orWhere('sifat', 'like', '%' . request('search') . '%')
+                ->orWhere('tanggal_kegiatan', 'like', '%' . request('search') . '%')
+                ->orWhere('diteruskan_ke', 'like', '%' . request('search') . '%');
+        } else {
+            $surat->where('disposisi', false);
+        }
         return view('surat.surat-masuk.belum-disposisi.index', [
             'title' => 'Surat Masuk',
-            'surats' => Surat::where('disposisi', 'false')->get(),
+            'surats' => $surat->get(),
+            'search' => request('search')
         ]);
     }
 

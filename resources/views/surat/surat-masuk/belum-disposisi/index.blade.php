@@ -13,13 +13,16 @@
                     Tambah Surat</a>
             @endcan
             <label for="table-search" class="sr-only">Search</label>
-            <div class="relative">
-                <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+            <form action="{{ route('surat.masuk.belum') }}" method="get">
+                <div class="relative">
+                    <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                    <input type="text" name="search"
+                        class="block p-2 pl-10 w-80 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+                        value="{{ request('search') }}" placeholder="Cari Surat Masuk">
                 </div>
-                <input type="text" id="table-search-users"
-                    class="block p-2 pl-10 w-80 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
-                    placeholder="Cari Surat Masuk">
-            </div>
+            </form>
         </div>
         <div class="my-5 h-[70vh]">
             <table class="w-full text-sm border border-gray-200 text-left text-gray-500">
