@@ -13,7 +13,6 @@ class MasukSudahController extends Controller
     public function index()
     {
         $surat = Surat::latest();
-
         if (Auth::user()->hasRole('unit')) {
             $name = Auth::user()->name;
             $surat->where('disposisi', 'true')
