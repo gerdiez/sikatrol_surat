@@ -103,18 +103,48 @@ Route::middleware("auth")->group(function () {
     Route::resource("/surat-perintah", SuratPerintahController::class, [
         "names" => [
             "index" => "surat.perintah",
+            "create" => "surat.perintah.create",
+            "store" => "surat.perintah.store",
+            "edit" => "surat.perintah.edit",
+            "show" => "surat.perintah.show",
+            "update" => "surat.perintah.update",
+            "destroy" => "surat.perintah.destroy",
         ],
     ]);
 
     Route::resource("/surat-keputusan", SuratKeputusanController::class, [
         "names" => [
             "index" => "surat.keputusan",
+            "create" => "surat.keputusan.create",
+            "store" => "surat.keputusan.store",
+            "edit" => "surat.keputusan.edit",
+            "show" => "surat.keputusan.show",
+            "update" => "surat.keputusan.update",
+            "destroy" => "surat.keputusan.destroy",
         ],
     ]);
 
     Route::resource("/surat-tugas", SuratTugasController::class, [
         "names" => [
             "index" => "surat.tugas",
+            "create" => "surat.tugas.create",
+            "store" => "surat.tugas.store",
+            "edit" => "surat.tugas.edit",
+            "show" => "surat.tugas.show",
+            "update" => "surat.tugas.update",
+            "destroy" => "surat.tugas.destroy",
+        ],
+    ]);
+
+    Route::resource("/agenda", AgendaController::class, [
+        "names" => [
+            "index" => "agenda",
+            "create" => "agenda.create",
+            "store" => "agenda.store",
+            "edit" => "agenda.edit",
+            "show" => "agenda.show",
+            "update" => "agenda.update",
+            "destroy" => "agenda.destroy",
         ],
     ]);
 });
