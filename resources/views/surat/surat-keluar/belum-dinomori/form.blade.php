@@ -88,10 +88,17 @@
     <div class="mb-10 col-start-5 col-end-8 grid grid-cols-3">
         <label for="no_agenda" class="my-auto font-medium text-gray-900">No Agenda</label>
         <input type="text" name="no_agenda" id="no_agenda"
-            @if ($action == 'create') value="{{ old('no_agenda') }}" class="bg-gray-50 border @error('no_agenda') border-red-600 @enderror col-span-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5"
-            @elseif ($action == 'edit') value="{{ $surats[0]->no_agenda }}" class="bg-gray-50 border @error('no_agenda') border-red-600 @enderror col-span-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5"
-            @elseif ($action == 'detail') class="bg-white" value="{{ $surats[0]->no_agenda }}" disabled @endif
-            required>
+            @if ($action == 'create') @if (Auth::user()->hasRole('unit')) 
+                class="bg-white focus:outline-none" readonly
+            @else 
+            value="{{ old('no_agenda') }}" class="bg-gray-50 border @error('no_agenda') border-red-600 @enderror col-span-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5" required @endif
+        @elseif ($action == 'edit')
+            @if (Auth::user()->hasRole('unit')) class="bg-white focus:outline-none" readonly
+            @else 
+            value="{{ $surats[0]->no_agenda }}" class="bg-gray-50 border @error('no_agenda') border-red-600 @enderror col-span-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5" required @endif
+        @elseif ($action == 'detail') class="bg-white" value="{{ $surats[0]->no_agenda }}" disabled
+            @endif
+        >
         @error('no_agenda')
             <p class="col-start-2 col-end-4 mt-2 text-xs text-red-600 font-medium">{{ $message }}</p>
         @enderror
