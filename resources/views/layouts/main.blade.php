@@ -6,6 +6,7 @@
     <title>{{ $title }} - SIKATROL</title>
     @vite('resources/css/app.css')
     @vite('resources/js/app.js')
+    @livewireStyles
 </head>
 
 <body>
@@ -18,6 +19,7 @@
             </main>
         </div>
     </div>
+    @livewireScripts
     @stack('script')
 </body>
 
