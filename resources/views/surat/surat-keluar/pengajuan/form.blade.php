@@ -25,10 +25,9 @@
     <div class="mb-10 col-span-3 grid grid-cols-3">
         <label for="no_surat" class="my-auto font-medium text-gray-900">No Surat</label>
         <input type="text" name="no_surat" id="no_surat"
-            @if ($action == 'create') @if (Auth::user()->hasRole('tata')) value="{{ old('no_surat') }}" class="bg-gray-50 border @error('no_surat') border-red-600 @enderror col-span-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5" required @else value="" class="bg-white focus:outline-none" readonly @endif
-        @elseif ($action == 'edit')
-            @if (Auth::user()->hasRole('tata')) value="{{ $surats[0]->no_surat }}"
-            class="bg-gray-50 border @error('no_surat') border-red-600 @enderror col-span-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5" required @else value="" class="bg-white focus:outline-none" readonly @endif
+            @if ($action == 'edit') @if (Auth::user()->hasRole('tata')) value="{{ $surats[0]->no_surat }}"
+            class="bg-gray-50 border @error('no_surat') border-red-600 @enderror col-span-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5" required 
+            @else value="{{ $surats[0]->no_surat }}" class="bg-white focus:outline-none" readonly @endif
         required @elseif ($action == 'detail') class="bg-white" value="{{ $surats[0]->no_surat }}" disabled
             @endif
         >
@@ -88,12 +87,7 @@
     <div class="mb-10 col-start-5 col-end-8 grid grid-cols-3">
         <label for="no_agenda" class="my-auto font-medium text-gray-900">No Agenda</label>
         <input type="text" name="no_agenda" id="no_agenda"
-            @if ($action == 'create') @if (Auth::user()->hasRole('unit')) 
-                class="bg-white focus:outline-none" readonly
-            @else 
-            value="{{ old('no_agenda') }}" class="bg-gray-50 border @error('no_agenda') border-red-600 @enderror col-span-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5" @endif
-        @elseif ($action == 'edit')
-            @if (Auth::user()->hasRole('sekre')) class="bg-white focus:outline-none" readonly
+            @if ($action == 'edit') @if (Auth::user()->hasRole('sekre')) value="{{ $surats[0]->no_agenda }}" class="bg-white focus:outline-none" readonly
             @else 
             value="{{ $surats[0]->no_agenda }}" class="bg-gray-50 border @error('no_agenda') border-red-600 @enderror col-span-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5" @endif
         @elseif ($action == 'detail') class="bg-white" value="{{ $surats[0]->no_agenda }}" disabled
