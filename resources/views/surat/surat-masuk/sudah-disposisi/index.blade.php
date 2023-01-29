@@ -45,9 +45,9 @@
                 {{ session('delete') }}
             </div>
         @endif
-        <div class="my-5 h-[70vh]">
+        <div class="my-5 h-[70vh] overflow-auto">
             <table class="w-full text-sm border border-gray-200 text-left text-gray-500">
-                <thead class="text-xs text-gray-700 uppercase bg-gray-50 text-center">
+                <thead class="sticky top-[-1px] z-10 text-xs text-gray-700 uppercase bg-gray-50 text-center">
                     <tr>
                         <th scope="col" class="p-4">
                             #
@@ -116,14 +116,14 @@
                                     {{ $surat->diteruskan_ke }}
                                 </td>
                                 <td class="py-4">
-                                    <div class="tooltip static hover:relative" data-tip="Lihat">
+                                    <div class="tooltip static z-20 hover:relative" data-tip="Lihat">
                                         <a href={{ route('surat.masuk.sudah.show', $surat->id) }}
                                             class="mr-1 text-blue-600 hover:bg-blue-300 hover:rounded-md">
                                             <i class="fa-solid fa-eye rounded-md border border-blue-400 p-1"></i>
                                         </a>
                                     </div>
                                     @canany(['tata usaha', 'sekretaris'])
-                                        <div class="tooltip static hover:relative" data-tip="Ubah">
+                                        <div class="tooltip static z-20 hover:relative" data-tip="Ubah">
                                             <a href={{ route('surat.masuk.sudah.edit', $surat->id) }}
                                                 class="mr-1 text-orange-600 hover:bg-orange-300 hover:rounded-md">
                                                 <i
@@ -132,7 +132,7 @@
                                         </div>
                                     @endcanany
                                     @can('tata usaha')
-                                        <div class="tooltip static hover:relative" data-tip="Hapus">
+                                        <div class="tooltip static z-20 hover:relative" data-tip="Hapus">
                                             <label for="delete{{ $surat->id }}"
                                                 class="mr-1 text-red-600 hover:bg-red-300 hover:rounded-md">
                                                 <i class="fa-solid fa-trash-can rounded-md border border-red-400 p-1"></i>
