@@ -30,7 +30,7 @@ class MasukBelumController extends Controller
 
         return view('surat.surat-masuk.belum-disposisi.index', [
             'title' => 'Surat Masuk',
-            'surats' => $surat->get(),
+            'surats' => $surat->paginate(10),
             'search' => request('search'),
             'categories' => $category
         ]);
