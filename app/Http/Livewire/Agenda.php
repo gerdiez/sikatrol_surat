@@ -15,12 +15,13 @@ class Agenda extends Component
     public $paginate = 10;
     public $category;
     public $start_date;
+    public $end_date;
 
     public function render()
     {
-        // $this->start_date = Carbon::now()->format("Y-m-d");
+        $this->start_date = Carbon::now();
+        // $this->start_date = Carbon::now();
         $surat = Surat::latest();
-
         // $from = $request->from;
         // $to = $request->to;
         // $title = "Sales From: " . $from . " To: " . $to;

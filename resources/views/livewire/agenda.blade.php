@@ -1,9 +1,9 @@
-<div class="p-5 rounded-lg bg-white">
-    {{-- <input type="date" wire:model.debounce.300ms="start_date"
+{{-- <div class="p-5 rounded-lg bg-white"> --}}
+{{-- <input type="date" wire:model.debounce.300ms="start_date"
         class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
         value="{{ Carbon\Carbon::parse('')->format('Y-m-d') }}"> --}}
-</div>
-<div class="flex justify-evenly items-center">
+{{-- </div> --}}
+<div class="flex justify-end items-center">
     <div class="relative w-96 flex">
         <div class="relative pl-10 text-gray-900 bg-gray-50 rounded-lg rounded-r-none border border-r-0 border-gray-300">
             <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
@@ -21,23 +21,30 @@
             class="block p-2 text-sm text-gray-900 bg-gray-50 rounded-lg rounded-l-none border border-l-0 border-gray-300 focus:outline-none"
             placeholder="Cari Surat Masuk">
     </div>
+</div>
+<div class="flex justify-evenly">
     <div class="relative w-96 flex">
         <div
             class="relative pl-10 text-gray-900 bg-gray-50 rounded-lg rounded-r-none border border-r-0 border-gray-300">
             <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
                 <i class="fa-solid fa-magnifying-glass"></i>
             </div>
-            <select wire:model="category"
-                class="appearance-none text-sm text-gray-90 py-2 pr-8 bg-gray-50 focus:outline-none">
-                @foreach ($categories as $key => $category)
-                    <option value="{{ $key }}">{{ $category }}</option>
-                @endforeach
-            </select>
-            <i class="absolute right-2 top-2 fa-solid fa-chevron-down ml-auto"></i>
         </div>
-        <input type="text" wire:model="search"
+        <input type="date" wire:model.debounce.300ms="start_date"
+            value="{{ Carbon\Carbon::parse($start_date)->format('Y-m-d') }}"
             class="block p-2 text-sm text-gray-900 bg-gray-50 rounded-lg rounded-l-none border border-l-0 border-gray-300 focus:outline-none"
-            placeholder="Cari Surat Masuk">
+            placeholder="Tanggal Sekarang">
+    </div>
+    <div class="relative w-96 flex">
+        <div
+            class="relative pl-10 text-gray-900 bg-gray-50 rounded-lg rounded-r-none border border-r-0 border-gray-300">
+            <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+        </div>
+        <input type="date" wire:model="end-date"
+            class="block p-2 text-sm text-gray-900 bg-gray-50 rounded-lg rounded-l-none border border-l-0 border-gray-300 focus:outline-none"
+            placeholder="Tanggal Sampai">
     </div>
 </div>
 @if (session()->has('create'))
