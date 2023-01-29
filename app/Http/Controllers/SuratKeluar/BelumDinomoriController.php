@@ -5,6 +5,7 @@ namespace App\Http\Controllers\SuratKeluar;
 use App\Models\Surat;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class BelumDinomoriController extends Controller
@@ -98,7 +99,7 @@ class BelumDinomoriController extends Controller
         $validate = $request->validate([
             "surat_dari" => "required",
             "jenis_surat" => "required",
-            "no_surat" => "required",
+            "no_surat" => "",
             "tanggal_surat" => "required",
             "sifat" => "required",
             "no_agenda" => "required",
@@ -119,22 +120,31 @@ class BelumDinomoriController extends Controller
                 ->file("file")
                 ->storeAs("files", $fileName);
         }
-        $validate["catatan"] == null
-            ? ($validate["status"] = "Pengajuan")
-            : ($validate["status"] = "Disetujui");
+        if (!Auth::user()->hasRole("unit")) {
+            $validate["catatan"] == null
+                ? ($validate["status"] = "Pengajuan")
+                : ($validate["status"] = "Disetujui");
+        }
 
         Surat::where("id", $id)->update($validate);
 
-        if ($validate["catatan"] == null) {
-            return redirect("/surat-keluar/pengajuan")->with(
+        if (Auth::user()->hasRole("unit")) {
+            return redirect("/surat-keluar/belum-dinomori")->with(
                 "edit",
                 "Data telah berhasil diubah"
             );
         } else {
-            return redirect("/surat-keluar/disetujui")->with(
-                "edit",
-                "Data telah berhasil diubah"
-            );
+            if ($validate["catatan"] == null) {
+                return redirect("/surat-keluar/pengajuan")->with(
+                    "edit",
+                    "Data telah berhasil diubah"
+                );
+            } else {
+                return redirect("/surat-keluar/disetujui")->with(
+                    "edit",
+                    "Data telah berhasil diubah"
+                );
+            }
         }
     }
 

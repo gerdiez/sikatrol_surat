@@ -28,7 +28,7 @@
             @if ($action == 'create') @if (Auth::user()->hasRole('tata')) value="{{ old('no_surat') }}" class="bg-gray-50 border @error('no_surat') border-red-600 @enderror col-span-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5" required @else value="" class="bg-white focus:outline-none" readonly @endif
         @elseif ($action == 'edit')
             @if (Auth::user()->hasRole('tata')) value="{{ $surats[0]->no_surat }}"
-            class="bg-gray-50 border @error('no_surat') border-red-600 @enderror col-span-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5" @else value="" class="bg-white focus:outline-none" readonly @endif
+            class="bg-gray-50 border @error('no_surat') border-red-600 @enderror col-span-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5" required @else value="" class="bg-white focus:outline-none" readonly @endif
         required @elseif ($action == 'detail') class="bg-white" value="{{ $surats[0]->no_surat }}" disabled
             @endif
         >
