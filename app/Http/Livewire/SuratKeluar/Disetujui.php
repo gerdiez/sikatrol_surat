@@ -4,10 +4,10 @@ namespace App\Http\Livewire\SuratKeluar;
 
 use Livewire\Component;
 
-class DisetujuiController extends Component
+class Disetujui extends Component
 {
     public function render()
     {
-        return view('livewire.surat-keluar.disetujui-controller');
+        return view('livewire.surat-keluar.disetujui');
     }
 }

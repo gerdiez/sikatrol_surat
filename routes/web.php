@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\SuratKeluar\BelumDinomoriController;
+use App\Http\Controllers\SuratKeluar\DisetujuiController;
+use App\Http\Controllers\SuratKeluar\PengajuanController;
 use App\Http\Controllers\SuratTugasController;
 use App\Http\Controllers\SuratPerintahController;
 use App\Http\Controllers\SuratKeputusanController;
@@ -74,7 +76,7 @@ Route::middleware("auth")->group(function () {
                 "destroy" => "surat.keluar.belum.dinomori.destroy",
             ],
         ]);
-        Route::resource("/pengajuan", BelumDinomoriController::class, [
+        Route::resource("/pengajuan", PengajuanController::class, [
             "names" => [
                 "index" => "surat.keluar.pengajuan",
                 "create" => "surat.keluar.pengajuan.create",
@@ -85,7 +87,7 @@ Route::middleware("auth")->group(function () {
                 "destroy" => "surat.keluar.pengajuan.destroy",
             ],
         ]);
-        Route::resource("/disetujui", BelumDinomoriController::class, [
+        Route::resource("/disetujui", DisetujuiController::class, [
             "names" => [
                 "index" => "surat.keluar.disetujui",
                 "create" => "surat.keluar.disetujui.create",

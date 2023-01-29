@@ -4,10 +4,10 @@ namespace App\Http\Livewire\SuratKeluar;
 
 use Livewire\Component;
 
-class PengajuanController extends Component
+class BelumDinomori extends Component
 {
     public function render()
     {
-        return view('livewire.surat-keluar.pengajuan-controller');
+        return view('livewire.surat-keluar.belum-dinomori');
     }
 }
