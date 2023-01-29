@@ -83,7 +83,7 @@
                     @foreach ($surats as $surat)
                         <tr class="bg-white border-b hover:bg-gray-50 text-center">
                             <td class="py-4 px-6">
-                                {{ $loop->iteration }}
+                                {{ ($surats->currentPage() - 1) * $surats->perpage() + $loop->index + 1 }}
                             </td>
                             <td class="py-4 px-6">
                                 {{ $surat->no_surat }}
