@@ -2,7 +2,15 @@
     <div class="mb-10 col-span-3 grid grid-cols-3">
         <label for="surat_dari" class="my-auto font-medium text-gray-900">Surat Dari</label>
         <input type="text" name="surat_dari" id="surat_dari"
-            @if ($action == 'create') value="{{ old('surat_dari') }}" class="bg-gray-50 border @error('surat_dari') border-red-600 @enderror col-span-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5"
+            @if ($action == 'create') 
+            
+            @if (Auth::user()->hasRole('unit'))
+            value="{{Auth::user()->name}}" class="my-auto font-medium text-gray-900 focus:outline-none" readonly
+            @else
+            value="{{ old('surat_dari') }}" class="bg-gray-50 border @error('surat_dari') border-red-600 @enderror col-span-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5"
+                
+            @endif
+
             @elseif ($action == 'edit') value="{{ $surats[0]->surat_dari }}" class="bg-gray-50 border @error('surat_dari') border-red-600 @enderror col-span-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5"
             @elseif ($action == 'detail') class="bg-white" value="{{ $surats[0]->surat_dari }}" disabled @endif
             required>
@@ -13,7 +21,7 @@
     <div class="mb-10 col-start-5 col-end-8 grid grid-cols-3">
         <label for="jenis_surat" class="my-auto font-medium text-gray-900">Jenis Surat</label>
         <input type="text" name="jenis_surat" id="jenis_surat"
-            @if ($action == 'create' || $action == 'edit') class="bg-white focus:outline-none" value="Surat Keluar" readonly="readonly"
+            @if ($action == 'create' || $action == 'edit') class="bg-white focus:outline-none" value="Surat Keluar" readonly
             @elseif ($action == 'detail') class="bg-white" value="{{ $surats[0]->jenis_surat }}" disabled @endif
             required>
     </div>
@@ -21,9 +29,9 @@
         <label for="no_surat" class="my-auto font-medium text-gray-900">No Surat</label>
         <input type="text" name="no_surat" id="no_surat"
             @if ($action == 'create') @if (Auth::user()->hasRole('tata'))
-            value="{{ old('no_surat') }}" class="bg-gray-50 border @error('no_surat') border-red-600 @enderror col-span-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5" required
-                @else 
-                class="bg-white" disabled @endif
+                    value="{{ old('no_surat') }}" class="bg-gray-50 border @error('no_surat') border-red-600 @enderror col-span-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5" required
+                @else
+                     value="" class="bg-white focus:outline-none" readonly @endif
         @elseif ($action == 'edit') value="{{ $surats[0]->no_surat }}"
             class="bg-gray-50 border @error('no_surat') border-red-600 @enderror col-span-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5"
         required @elseif ($action == 'detail') class="bg-white" value="{{ $surats[0]->no_surat }}" disabled
@@ -148,12 +156,12 @@
     </div>
     <div class="mb-10 col-span-3 grid grid-cols-3">
         <label for="diteruskan_ke" class="my-auto font-medium text-gray-900">Diteruskan Ke</label>
-        <div class="col-span-2 relative">
-            @if ($action == 'create')
-                {{-- <input
-                class="bg-gray-50 border  @error('diteruskan_ke') border-red-600 @enderror col-start-2 col-end-9 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5"
-                disabled /> --}}
-                <select name="diteruskan_ke" id="diteruskan_ke" required
+        {{-- <div class="col-span-2 relative"> --}}
+        @if ($action == 'create')
+            <input name="diteruskan_ke" value="{{ old('diteruskan_ke') }}"
+                class="bg-gray-50 col-start-2 col-end-9 border @error('diteruskan_ke') border-red-600 @enderror col-start-2 col-end-9 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5"
+                required />
+            {{-- <select name="diteruskan_ke" id="diteruskan_ke" required
                     class="appearance-none bg-gray-50 border @error('diteruskan_ke') border-red-600 @enderror col-span-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2.5">
                     <option selected disabled>Pilih...</option>
                     <option value="Umpeg">Umpeg</option>
@@ -169,9 +177,12 @@
                     <option value="Kelurahan Pungkur">Kelurahan Pungkur</option>
                     <option value="Kelurahan Pasirluyu">Kelurahan Pasirluyu</option>
                 </select>
-                <i class="absolute right-4 top-3 fa-solid fa-chevron-down ml-auto"></i>
-            @elseif ($action == 'edit')
-                <select id="" name="diteruskan_ke" required
+                <i class="absolute right-4 top-3 fa-solid fa-chevron-down ml-auto"></i> --}}
+        @elseif ($action == 'edit')
+            <input name="diteruskan_ke" value="{{ $surats[0]->diteruskan_ke }}"
+                class="bg-gray-50 col-start-2 col-end-9 border @error('diteruskan_ke') border-red-600 @enderror col-start-2 col-end-9 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5"
+                required />
+            {{-- <select id="" name="diteruskan_ke" required
                     class="appearance-none bg-gray-50 border @error('diteruskan_ke') border-red-600 @enderror  col-span-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2.5">
                     @foreach ($unitKerja as $unit)
                         @if ($surats[0]->diteruskan_ke == $unit)
@@ -181,16 +192,26 @@
                         @endif
                     @endforeach
                 </select>
-                <i class="absolute right-4 top-3 fa-solid fa-chevron-down ml-auto"></i>
-            @elseif ($action == 'detail')
-                <input class="bg-white" value="{{ $surats[0]->diteruskan_ke }}" disabled />
-            @endif
-        </div>
+                <i class="absolute right-4 top-3 fa-solid fa-chevron-down ml-auto"></i> --}}
+        @elseif ($action == 'detail')
+            <input class="bg-white" value="{{ $surats[0]->diteruskan_ke }}" disabled />
+        @endif
+        {{-- </div> --}}
     </div>
     <div class="mb-10 col-start-1 col-end-8 grid grid-cols-8">
         <label for="catatan" class="my-auto font-medium text-gray-900">Catatan</label>
         <input type="text" name="catatan" id="catatan"
-            @if ($action == 'create') value="{{ old('catatan') }}" class="bg-gray-50 ml-5 border @error('catatan') border-red-600 @enderror col-start-2 col-end-9 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5"
+            @if ($action == 'create') 
+            
+            @if (Auth::user()->hasRole('unit'))
+            class="bg-white focus:outline-none" readonly
+
+            @else
+            value="{{ old('catatan') }}" class="bg-gray-50 ml-5 border @error('catatan') border-red-600 @enderror col-start-2 col-end-9 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5" required
+
+            @endif
+            
+
             @elseif ($action == 'edit') value="{{ $surats[0]->catatan }}" class="bg-gray-50 ml-5 border @error('catatan') border-red-600 @enderror col-start-2 col-end-9 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5"
                     @elseif ($action == 'detail') class="bg-white ml-5" value="{{ $surats[0]->catatan }}" disabled @endif>
         @error('catatan')

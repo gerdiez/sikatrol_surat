@@ -25,11 +25,13 @@ class BelumDinomori extends Component
                     ->where("status", "Belum Dinomori")
                     ->where("jenis_surat", "Surat Keluar")
                     ->where("diteruskan_ke", $name)
+                    ->orWhere("surat_dari", $name)
                 : $surat
                     ->where("status", "Belum Dinomori")
                     ->where("jenis_surat", "Surat Keluar")
                     ->where($this->category, "like", "%" . $this->search . "%")
-                    ->where("diteruskan_ke", $name);
+                    ->where("diteruskan_ke", $name)
+                    ->where("surat_dari", $name);
         } else {
             $this->search === null
                 ? $surat

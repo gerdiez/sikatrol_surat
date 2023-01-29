@@ -37,9 +37,11 @@ class BelumDinomoriController extends Controller
             "perihal" => "required",
             "file" => "required|mimes:pdf,docx,xlsx,jpg,jpeg,png|max:2048",
             "diteruskan_ke" => "required",
-            "catatan" => "required",
+            "catatan" => "",
         ]);
-        $validate["no_surat"] == null
+        // return $request;
+        // return $request->input["no_surat"];
+        $validate["no_surat"] == null 
             ? ($validate["status"] = "Belum Dinomori")
             : ($validate["status"] = "Disetujui");
 
