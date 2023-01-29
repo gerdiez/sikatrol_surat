@@ -30,7 +30,8 @@ class SuratSeeder extends Seeder
             "Kelurahan Pasirluyu",
         ];
         $sifat = ["Segera", "Sangat Segera", "Biasa"];
-        $disposisi = ["false", 'true'];
+        $disposisi = ["false", "true"];
+        $status = ["Belum Dinomori", "Pengajuan", "Disetujui"];
 
         // Surat Masuk
         for ($i = 0; $i < 3; $i++) {
@@ -46,8 +47,33 @@ class SuratSeeder extends Seeder
                     "kategori" => fake()->streetName(),
                     "perihal" => fake()->realText(20),
                     "file" => fake()->mimeType(),
-                    "file_name" => "Menulis.docx",
+                    "file_name" => "Surat Masuk.docx",
                     "disposisi" => $disposisi[array_rand($disposisi)],
+                    "status" => "",
+                    "diteruskan_ke" => $unit,
+                    "catatan" => fake()->realText(10),
+                    "dari" => fake()->name(),
+                ]);
+            }
+        }
+
+        // Surat Keluar
+        for ($i = 0; $i < 3; $i++) {
+            foreach ($unitKerja as $unit) {
+                Surat::create([
+                    "surat_dari" => fake()->name(),
+                    "jenis_surat" => "Surat Keluar",
+                    "no_surat" => fake()->phoneNumber(),
+                    "tanggal_surat" => fake()->dateTime(),
+                    "sifat" => $sifat[array_rand($sifat)],
+                    "no_agenda" => fake()->buildingNumber(),
+                    "tanggal_kegiatan" => fake()->dateTime(),
+                    "kategori" => fake()->streetName(),
+                    "perihal" => fake()->realText(20),
+                    "file" => fake()->mimeType(),
+                    "file_name" => "Surat Keluar.docx",
+                    "disposisi" => "",
+                    "status" => $status[array_rand($status)],
                     "diteruskan_ke" => $unit,
                     "catatan" => fake()->realText(10),
                     "dari" => fake()->name(),

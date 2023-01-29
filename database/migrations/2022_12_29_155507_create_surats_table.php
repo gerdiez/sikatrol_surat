@@ -28,6 +28,7 @@ return new class extends Migration
             $table->string('file');
             $table->string('file_name');
             $table->string('disposisi')->default('false');
+            $table->string('status')->nullable();
             $table->string('diteruskan_ke')->nullable();
             $table->text('catatan')->nullable();
             $table->string('dari')->nullable();
