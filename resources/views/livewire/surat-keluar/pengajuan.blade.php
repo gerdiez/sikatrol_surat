@@ -20,15 +20,15 @@
         </div>
     </div>
     @if (session()->has('create'))
-        <div class="p-4 mb-4 text-sm text-green-700 font-medium rounded-lg bg-green-50">
+        <div class="p-4 my-4 text-sm text-green-700 font-medium rounded-lg bg-green-50">
             {{ session('create') }}
         </div>
     @elseif (session()->has('edit'))
-        <div class="p-4 mb-4 text-sm text-orange-700 font-medium rounded-lg bg-orange-50">
+        <div class="p-4 my-4 text-sm text-orange-700 font-medium rounded-lg bg-orange-50">
             {{ session('edit') }}
         </div>
     @elseif (session()->has('delete'))
-        <div class="p-4 mb-4 text-sm text-red-700 font-medium rounded-lg bg-red-50">
+        <div class="p-4 my-4 text-sm text-red-700 font-medium rounded-lg bg-red-50">
             {{ session('delete') }}
         </div>
     @endif
@@ -138,7 +138,8 @@
                                                             <span class="sr-only">Close modal</span>
                                                         </label>
                                                         <div class="p-6 text-center">
-                                                            <form action="{{ route('surat.keluar.pengajuan.destroy', $surat->id) }}"
+                                                            <form
+                                                                action="{{ route('surat.keluar.pengajuan.destroy', $surat->id) }}"
                                                                 method="post">
                                                                 @method('delete')
                                                                 @csrf

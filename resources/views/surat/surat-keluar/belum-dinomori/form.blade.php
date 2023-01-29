@@ -12,14 +12,15 @@
     <div class="mb-10 col-start-5 col-end-8 grid grid-cols-3">
         <label for="jenis_surat" class="my-auto font-medium text-gray-900">Jenis Surat</label>
         <input type="text" name="jenis_surat" id="jenis_surat"
-            @if ($action == 'create') class="bg-white focus:outline-none" value="Surat Masuk" readonly="readonly"
+            @if ($action == 'create') class="bg-white focus:outline-none" value="Surat Keluar" readonly="readonly"
             @elseif ($action == 'detail') class="bg-white" value="{{ $surats[0]->jenis_surat }}" disabled @endif
             required>
     </div>
     <div class="mb-10 col-span-3 grid grid-cols-3">
         <label for="no_surat" class="my-auto font-medium text-gray-900">No Surat</label>
         <input type="text" name="no_surat" id="no_surat"
-            @if ($action == 'create') value="{{ old('no_surat') }}" class="bg-gray-50 border  @error('no_surat') border-red-600 @enderror col-span-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5"
+            @if ($action == 'create') class="bg-white" disabled
+            @elseif($action == ' edit') value="{{ $surats[0]->no_surat }}" class="bg-gray-50 border @error('no_surat') border-red-600 @enderror col-span-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5"
             @elseif ($action == 'detail') class="bg-white" value="{{ $surats[0]->no_surat }}" disabled @endif
             required>
         @error('no_surat')
@@ -112,8 +113,11 @@
     </div>
     <div class="mb-10 col-span-3 grid grid-cols-3">
         <label for="diteruskan_ke" class="my-auto font-medium text-gray-900">Diteruskan Ke</label>
-        <div class="col-span-2 relative">
-            @if ($action == 'create')
+        @if ($action == 'create')
+            {{-- <input
+                class="bg-gray-50 border  @error('diteruskan_ke') border-red-600 @enderror col-start-2 col-end-9 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5"
+                disabled /> --}}
+            <div class="col-span-2 relative">
                 <select name="diteruskan_ke" id="diteruskan_ke" required
                     class="appearance-none bg-gray-50 border @error('diteruskan_ke') border-red-600 @enderror col-span-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2.5">
                     <option selected disabled>Pilih...</option>
@@ -131,10 +135,10 @@
                     <option value="Kelurahan Pasirluyu">Kelurahan Pasirluyu</option>
                 </select>
                 <i class="absolute right-4 top-3 fa-solid fa-chevron-down ml-auto"></i>
-            @elseif ($action == 'detail')
-                <input class="bg-white" value="{{ $surats[0]->diteruskan_ke }}" disabled />
-            @endif
-        </div>
+            </div>
+        @elseif ($action == 'detail')
+            <input class="bg-white" value="{{ $surats[0]->diteruskan_ke }}" disabled />
+        @endif
     </div>
     <div class="mb-10 col-start-1 col-end-8 grid grid-cols-8">
         <label for="catatan" class="my-auto font-medium text-gray-900">Catatan</label>

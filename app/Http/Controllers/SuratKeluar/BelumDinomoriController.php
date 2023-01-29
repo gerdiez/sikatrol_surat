@@ -24,7 +24,28 @@ class BelumDinomoriController extends Controller
 
     public function store(Request $request)
     {
-        //
+        $validate = $request->validate([
+            "surat_dari" => "required",
+            "jenis_surat" => "required",
+            "tanggal_surat" => "required",
+            "sifat" => "required",
+            "no_agenda" => "required",
+            "tanggal_kegiatan" => "",
+            "kategori" => "required",
+            "perihal" => "required",
+            "file" => "required|mimes:pdf,docx,xlsx,jpg,jpeg,png|max:2048",
+            "diteruskan_ke" => "required",
+            "catatan" => "required",
+        ]);
+        $validate["status"] = "Belum Dinomori";
+        $fileName = $request->file("file")->getClientOriginalName();
+        $validate["file_name"] = $fileName;
+        $validate["file"] = $request->file("file")->storeAs("files", $fileName);
+        Surat::create($validate);
+        return redirect("/surat-keluar/pengajuan")->with(
+            "create",
+            "Data telah berhasil ditambahkan"
+        );
     }
 
     public function show($id)

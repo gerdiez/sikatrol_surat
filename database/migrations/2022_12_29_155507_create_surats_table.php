@@ -18,7 +18,7 @@ return new class extends Migration
             $table->timestamps();
             $table->string('surat_dari');
             $table->string('jenis_surat');
-            $table->string('no_surat');
+            $table->string('no_surat')->nullable();
             $table->date('tanggal_surat');
             $table->string('sifat');
             $table->string('no_agenda');
