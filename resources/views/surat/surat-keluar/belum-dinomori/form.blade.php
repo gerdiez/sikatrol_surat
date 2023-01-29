@@ -2,18 +2,15 @@
     <div class="mb-10 col-span-3 grid grid-cols-3">
         <label for="surat_dari" class="my-auto font-medium text-gray-900">Surat Dari</label>
         <input type="text" name="surat_dari" id="surat_dari"
-            @if ($action == 'create') 
-            
-            @if (Auth::user()->hasRole('unit'))
-            value="{{Auth::user()->name}}" class="my-auto font-medium text-gray-900 focus:outline-none" readonly
+            @if ($action == 'create') @if (Auth::user()->hasRole('unit'))
+            value="{{ Auth::user()->name }}" class="my-auto font-medium text-gray-900 focus:outline-none" readonly
             @else
-            value="{{ old('surat_dari') }}" class="bg-gray-50 border @error('surat_dari') border-red-600 @enderror col-span-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5"
-                
+            value="{{ old('surat_dari') }}" class="bg-gray-50 border @error('surat_dari') border-red-600 @enderror col-span-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5" @endif
+        @elseif ($action == 'edit') value="{{ $surats[0]->surat_dari }}"
+            class="bg-gray-50 border @error('surat_dari') border-red-600 @enderror col-span-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5"
+        @elseif ($action == 'detail') class="bg-white" value="{{ $surats[0]->surat_dari }}" disabled
             @endif
-
-            @elseif ($action == 'edit') value="{{ $surats[0]->surat_dari }}" class="bg-gray-50 border @error('surat_dari') border-red-600 @enderror col-span-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5"
-            @elseif ($action == 'detail') class="bg-white" value="{{ $surats[0]->surat_dari }}" disabled @endif
-            required>
+        required>
         @error('surat_dari')
             <p class="col-start-2 col-end-4 mt-2 text-xs text-red-600 font-medium">{{ $message }}</p>
         @enderror
@@ -28,12 +25,10 @@
     <div class="mb-10 col-span-3 grid grid-cols-3">
         <label for="no_surat" class="my-auto font-medium text-gray-900">No Surat</label>
         <input type="text" name="no_surat" id="no_surat"
-            @if ($action == 'create') @if (Auth::user()->hasRole('tata'))
-                    value="{{ old('no_surat') }}" class="bg-gray-50 border @error('no_surat') border-red-600 @enderror col-span-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5" required
-                @else
-                     value="" class="bg-white focus:outline-none" readonly @endif
-        @elseif ($action == 'edit') value="{{ $surats[0]->no_surat }}"
-            class="bg-gray-50 border @error('no_surat') border-red-600 @enderror col-span-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5"
+            @if ($action == 'create') @if (Auth::user()->hasRole('tata')) value="{{ old('no_surat') }}" class="bg-gray-50 border @error('no_surat') border-red-600 @enderror col-span-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5" required @else value="" class="bg-white focus:outline-none" readonly @endif
+        @elseif ($action == 'edit')
+            @if (Auth::user()->hasRole('tata')) value="{{ $surats[0]->no_surat }}"
+            class="bg-gray-50 border @error('no_surat') border-red-600 @enderror col-span-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5" @else value="" class="bg-white focus:outline-none" readonly @endif
         required @elseif ($action == 'detail') class="bg-white" value="{{ $surats[0]->no_surat }}" disabled
             @endif
         >
@@ -201,19 +196,15 @@
     <div class="mb-10 col-start-1 col-end-8 grid grid-cols-8">
         <label for="catatan" class="my-auto font-medium text-gray-900">Catatan</label>
         <input type="text" name="catatan" id="catatan"
-            @if ($action == 'create') 
-            
-            @if (Auth::user()->hasRole('unit'))
+            @if ($action == 'create') @if (Auth::user()->hasRole('unit'))
             class="bg-white focus:outline-none" readonly
-
-            @else
-            value="{{ old('catatan') }}" class="bg-gray-50 ml-5 border @error('catatan') border-red-600 @enderror col-start-2 col-end-9 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5" required
-
-            @endif
-            
-
-            @elseif ($action == 'edit') value="{{ $surats[0]->catatan }}" class="bg-gray-50 ml-5 border @error('catatan') border-red-600 @enderror col-start-2 col-end-9 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5"
-                    @elseif ($action == 'detail') class="bg-white ml-5" value="{{ $surats[0]->catatan }}" disabled @endif>
+            @else value="{{ old('catatan') }}" class="bg-gray-50 ml-5 border @error('catatan') border-red-600 @enderror col-start-2 col-end-9 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5" required @endif
+        @elseif ($action == 'edit')
+            @if (Auth::user()->hasRole('unit')) class="bg-white focus:outline-none" readonly
+        @else 
+        value="{{ $surats[0]->catatan }}" class="bg-gray-50 ml-5 border @error('catatan') border-red-600 @enderror col-start-2 col-end-9 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5" @endif
+        @elseif ($action == 'detail') class="bg-white ml-5" value="{{ $surats[0]->catatan }}" disabled
+            @endif>
         @error('catatan')
             <p class="col-start-2 col-end-4 mt-2 ml-5 text-xs text-red-600 font-medium">{{ $message }}</p>
         @enderror

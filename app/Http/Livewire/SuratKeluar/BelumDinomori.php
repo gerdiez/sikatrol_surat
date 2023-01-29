@@ -24,8 +24,7 @@ class BelumDinomori extends Component
                 ? $surat
                     ->where("status", "Belum Dinomori")
                     ->where("jenis_surat", "Surat Keluar")
-                    ->where("diteruskan_ke", $name)
-                    ->orWhere("surat_dari", $name)
+                    ->where("surat_dari", $name)
                 : $surat
                     ->where("status", "Belum Dinomori")
                     ->where("jenis_surat", "Surat Keluar")

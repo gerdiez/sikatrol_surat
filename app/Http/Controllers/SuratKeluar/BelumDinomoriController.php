@@ -39,9 +39,7 @@ class BelumDinomoriController extends Controller
             "diteruskan_ke" => "required",
             "catatan" => "",
         ]);
-        // return $request;
-        // return $request->input["no_surat"];
-        $validate["no_surat"] == null 
+        $validate["no_surat"] == null
             ? ($validate["status"] = "Belum Dinomori")
             : ($validate["status"] = "Disetujui");
 
@@ -108,9 +106,8 @@ class BelumDinomoriController extends Controller
             "kategori" => "required",
             "perihal" => "required",
             "file" => "mimes:pdf,docx,xlsx,jpg,jpeg,png|max:2048",
-            "diteruskan_ke" => "",
+            "diteruskan_ke" => "required",
             "catatan" => "",
-            "dari" => "",
         ]);
         if ($request->file("file")) {
             if ($request->oldImage) {
@@ -122,13 +119,23 @@ class BelumDinomoriController extends Controller
                 ->file("file")
                 ->storeAs("files", $fileName);
         }
-        $validate["status"] = "Pengajuan";
+        $validate["catatan"] == null
+            ? ($validate["status"] = "Pengajuan")
+            : ($validate["status"] = "Disetujui");
 
         Surat::where("id", $id)->update($validate);
-        return redirect("/surat-keluar/pengajuan")->with(
-            "edit",
-            "Data telah berhasil diubah"
-        );
+
+        if ($validate["catatan"] == null) {
+            return redirect("/surat-keluar/pengajuan")->with(
+                "edit",
+                "Data telah berhasil diubah"
+            );
+        } else {
+            return redirect("/surat-keluar/disetujui")->with(
+                "edit",
+                "Data telah berhasil diubah"
+            );
+        }
     }
 
     public function destroy($id)
