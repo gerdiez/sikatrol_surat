@@ -114,7 +114,7 @@ class SuratPerintahController extends Controller
     public function destroy($id)
     {
         Surat::destroy($id);
-        return redirect("/surat-perintah/belum-dinomori")->with(
+        return redirect("/surat-perintah")->with(
             "delete",
             "Data telah berhasil dihapus"
         );
