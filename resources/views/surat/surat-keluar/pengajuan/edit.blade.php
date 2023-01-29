@@ -8,5 +8,5 @@
     <form action="{{ route('surat.keluar.pengajuan.update', $id) }}" method="post" enctype="multipart/form-data" class="p-5 bg-white">
         @method('put')
         @csrf
-        @include('surat.surat-keluar.belum-dinomori.form', ['action' => 'edit'])
+        @include('surat.surat-keluar.pengajuan.form', ['action' => 'edit'])
     @endsection

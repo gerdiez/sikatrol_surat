@@ -93,7 +93,7 @@
             @else 
             value="{{ old('no_agenda') }}" class="bg-gray-50 border @error('no_agenda') border-red-600 @enderror col-span-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5" @endif
         @elseif ($action == 'edit')
-            @if (Auth::user()->hasRole('unit')) class="bg-white focus:outline-none" readonly
+            @if (Auth::user()->hasRole('sekre')) class="bg-white focus:outline-none" readonly
             @else 
             value="{{ $surats[0]->no_agenda }}" class="bg-gray-50 border @error('no_agenda') border-red-600 @enderror col-span-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5" @endif
         @elseif ($action == 'detail') class="bg-white" value="{{ $surats[0]->no_agenda }}" disabled
