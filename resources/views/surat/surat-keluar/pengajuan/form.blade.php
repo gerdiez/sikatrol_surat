@@ -20,15 +20,10 @@
     <div class="mb-10 col-span-3 grid grid-cols-3">
         <label for="no_surat" class="my-auto font-medium text-gray-900">No Surat</label>
         <input type="text" name="no_surat" id="no_surat"
-            @if ($action == 'create') @if (Auth::user()->hasRole('tata'))
-            value="{{ old('no_surat') }}" class="bg-gray-50 border @error('no_surat') border-red-600 @enderror col-span-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5" required
-                @else 
-                class="bg-white" disabled @endif
-        @elseif ($action == 'edit') value="{{ $surats[0]->no_surat }}"
-            class="bg-gray-50 border @error('no_surat') border-red-600 @enderror col-span-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5"
-        required @elseif ($action == 'detail') class="bg-white" value="{{ $surats[0]->no_surat }}" disabled
-            @endif
-        >
+            @if ($action == 'create') class="bg-white" disabled
+            @elseif($action == 'edit') value="{{ $surats[0]->no_surat }}" class="bg-gray-50 border @error('no_surat') border-red-600 @enderror col-span-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5"
+            @elseif ($action == 'detail') class="bg-white" value="{{ $surats[0]->no_surat }}" disabled @endif
+            required>
         @error('no_surat')
             <p class="col-start-2 col-end-4 mt-2 text-xs text-red-600 font-medium">{{ $message }}</p>
         @enderror
@@ -135,7 +130,7 @@
             <a href="{{ asset('storage/' . $surats[0]->file) }}" target="_blank"
                 class="col-start-2 col-end-4 my-2 text-blue-600 text-sm underline hover:brightness-50">{{ $surats[0]->file_name }}</a>
             <input type="hidden" name="oldFile" value="{{ $surats[0]->file }}">
-            <input type="file" name="file" value=""
+            <input type="file" name="file"  value=""
                 class="col-start-2 col-end-4 bg-gray-50 col-span-2 border @error('file') border-red-600 @enderror border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5">
         @elseif($action == 'detail')
             <a href="{{ asset('storage/' . $surats[0]->file) }}" target="_blank"

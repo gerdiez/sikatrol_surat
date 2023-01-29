@@ -28,6 +28,7 @@ class BelumDinomoriController extends Controller
         $validate = $request->validate([
             "surat_dari" => "required",
             "jenis_surat" => "required",
+            "no_surat" => "",
             "tanggal_surat" => "required",
             "sifat" => "required",
             "no_agenda" => "required",
@@ -38,15 +39,26 @@ class BelumDinomoriController extends Controller
             "diteruskan_ke" => "required",
             "catatan" => "required",
         ]);
-        $validate["status"] = "Belum Dinomori";
+        $validate["no_surat"] == null
+            ? ($validate["status"] = "Belum Dinomori")
+            : ($validate["status"] = "Disetujui");
+
         $fileName = $request->file("file")->getClientOriginalName();
         $validate["file_name"] = $fileName;
         $validate["file"] = $request->file("file")->storeAs("files", $fileName);
         Surat::create($validate);
-        return redirect("/surat-keluar/belum-dinomori")->with(
-            "create",
-            "Data telah berhasil ditambahkan"
-        );
+
+        if ($validate["no_surat"] == null) {
+            return redirect("/surat-keluar/belum-dinomori")->with(
+                "create",
+                "Data telah berhasil ditambahkan"
+            );
+        } else {
+            return redirect("/surat-keluar/disetujui")->with(
+                "create",
+                "Data telah berhasil ditambahkan"
+            );
+        }
     }
 
     public function show($id)

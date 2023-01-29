@@ -5,6 +5,7 @@ namespace App\Http\Livewire\SuratKeluar;
 use App\Models\Surat;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Illuminate\Support\Facades\Auth;
 
 class BelumDinomori extends Component
 {
@@ -17,14 +18,28 @@ class BelumDinomori extends Component
     public function render()
     {
         $surat = Surat::latest();
-        $this->search === null
-            ? $surat
-                ->where("status", "Belum Dinomori")
-                ->where("jenis_surat", "Surat Keluar")
-            : $surat
-                ->where("status", "Belum Dinomori")
-                ->where("jenis_surat", "Surat Keluar")
-                ->where($this->category, "like", "%" . $this->search . "%");
+        if (Auth::user()->hasRole("unit")) {
+            $name = Auth::user()->name;
+            $this->search === null
+                ? $surat
+                    ->where("status", "Belum Dinomori")
+                    ->where("jenis_surat", "Surat Keluar")
+                    ->where("diteruskan_ke", $name)
+                : $surat
+                    ->where("status", "Belum Dinomori")
+                    ->where("jenis_surat", "Surat Keluar")
+                    ->where($this->category, "like", "%" . $this->search . "%")
+                    ->where("diteruskan_ke", $name);
+        } else {
+            $this->search === null
+                ? $surat
+                    ->where("status", "Belum Dinomori")
+                    ->where("jenis_surat", "Surat Keluar")
+                : $surat
+                    ->where("status", "Belum Dinomori")
+                    ->where("jenis_surat", "Surat Keluar")
+                    ->where($this->category, "like", "%" . $this->search . "%");
+        }
 
         return view("livewire.surat-keluar.belum-dinomori", [
             "surats" => $surat->paginate($this->paginate),

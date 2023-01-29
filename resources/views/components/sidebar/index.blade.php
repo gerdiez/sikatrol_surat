@@ -12,16 +12,18 @@
             <li x-data="{ dropdown: false }" :class="{ 'flex justify-end': !sidebarOpen }">
                 <x-sidebar.menu-dropdown name="Surat Masuk" />
                 <ul class="space-y-1 py-1 hidden" :class="{ '!block': dropdown }">
-                    @canany(['tata usaha', 'sekretaris'])
+                    @cannot('sekretaris')
                         <x-sidebar.sub-menu name="Belum Disposisi" route="{{ route('surat.masuk.belum') }}" />
-                    @endcanany
+                    @endcannot
                     <x-sidebar.sub-menu name="Sudah Disposisi" route="{{ route('surat.masuk.sudah') }}" />
                 </ul>
             </li>
             <li x-data="{ dropdown: false }" :class="{ 'flex justify-end': !sidebarOpen }">
                 <x-sidebar.menu-dropdown name="Surat Keluar" />
                 <ul class="space-y-1 py-1 hidden" :class="{ '!block': dropdown }">
-                    <x-sidebar.sub-menu name="Belum Dinomori" route="{{ route('surat.keluar.belum.dinomori') }}" />
+                    @cannot('sekretaris')
+                        <x-sidebar.sub-menu name="Belum Dinomori" route="{{ route('surat.keluar.belum.dinomori') }}" />
+                    @endcannot
                     <x-sidebar.sub-menu name="Pengajuan" route="{{ route('surat.keluar.pengajuan') }}" />
                     <x-sidebar.sub-menu name="Disetujui" route="{{ route('surat.keluar.disetujui') }}" />
                 </ul>
