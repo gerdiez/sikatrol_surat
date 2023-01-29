@@ -198,5 +198,32 @@
                 </tbody>
             </table>
         </div>
+        <nav role="navigation" aria-label="{{ __('Pagination Navigation') }}" class="flex items-center">
+            <form action="{{ route('surat.masuk.sudah') }}" method="get" class="my-auto relative w-1/12 mr-5">
+                <select name="paginate" id="paginate" onchange="onChange()"
+                    class="appearance-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    @foreach ($options as $option)
+                        @if ($paginate == $option)
+                            <option selected value="{{ $option }}">{{ $option }}</option>
+                        @else
+                            <option value="{{ $option }}">{{ $option }}</option>
+                        @endif
+                    @endforeach
+                </select>
+                <i class="absolute right-3 top-3 fa-solid fa-chevron-down ml-auto"></i>
+                <button type="submit" id="submitPaginate" class="hidden"></button>
+            </form>
+            {{ $surats->links('vendor.pagination.tailwind') }}
+        </nav>
     </div>
 @endsection
+
+@push('script')
+    <script>
+        let select = document.getElementById("paginate");
+        function onChange() {
+            let value = select.value;
+            document.getElementById('submitPaginate').click()
+        }
+    </script>
+@endpush

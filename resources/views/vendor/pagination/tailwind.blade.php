@@ -1,16 +1,6 @@
-@if ($paginator->hasPages())
+{{-- @if ($paginator->hasPages()) --}}
 
-    <nav role="navigation" aria-label="{{ __('Pagination Navigation') }}" class="flex items-center">
-        <div class="relative w-1/12 mr-5">
-            <select
-                class="appearance-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                <option value="10">10</option>
-                <option value="15">20</option>
-                <option value="15">40</option>
-            </select>
-            <i class="absolute right-3 top-3 fa-solid fa-chevron-down ml-auto"></i>
-        </div>
-
+    {{-- <nav role="navigation" aria-label="{{ __('Pagination Navigation') }}" class="flex items-center"> --}}
         <div class="flex justify-between flex-1 sm:hidden">
             @if ($paginator->onFirstPage())
                 <span
@@ -137,5 +127,5 @@
                 </span>
             </div>
         </div>
-    </nav>
-@endif
+    {{-- </nav> --}}
+{{-- @endif --}}

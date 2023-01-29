@@ -13,6 +13,7 @@ class MasukSudahController extends Controller
     public function index()
     {
         $surat = Surat::latest();
+        $paginate = request("paginate") ?? 10;
         if (Auth::user()->hasRole('unit')) {
             $name = Auth::user()->name;
             $surat->where('disposisi', 'true')
@@ -41,9 +42,11 @@ class MasukSudahController extends Controller
 
         return view('surat.surat-masuk.sudah-disposisi.index', [
             'title' => 'Surat Masuk',
-            'surats' => $surat->get(),
+            'surats' => $surat->paginate($paginate),
             'search' => request('search'),
-            'categories' => $category
+            'categories' => $category,
+            "paginate" => $paginate,
+            "options" => [10, 20, 30],
         ]);
     }
 
