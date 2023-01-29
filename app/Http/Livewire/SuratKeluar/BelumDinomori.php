@@ -2,12 +2,41 @@
 
 namespace App\Http\Livewire\SuratKeluar;
 
+use App\Models\Surat;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class BelumDinomori extends Component
 {
+    use WithPagination;
+
+    public $search;
+    public $paginate = 10;
+    public $category;
+
     public function render()
     {
-        return view('livewire.surat-keluar.belum-dinomori');
+        $surat = Surat::latest();
+        $this->search === null
+            ? $surat
+                ->where("disposisi", "false")
+                ->where("jenis_surat", "Surat Keluar")
+            : $surat
+                ->where("disposisi", "false")
+                ->where("jenis_surat", "Surat Keluar")
+                ->where($this->category, "like", "%" . $this->search . "%");
+
+        return view("livewire.surat-keluar.belum-dinomori", [
+            "surats" => $surat->paginate($this->paginate),
+            "categories" => [
+                "no_surat" => "No Surat",
+                "surat_dari" => "Surat Dari",
+                "kategori" => "Kategori",
+                "perihal" => "Perihal",
+                "sifat" => "Sifat",
+                "tanggal_kegiatan" => "Tgl Kegiatan",
+            ],
+            "options" => [10, 20, 30],
+        ]);
     }
 }

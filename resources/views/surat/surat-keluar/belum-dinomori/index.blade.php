@@ -5,5 +5,5 @@
 @endsection
 
 @section('content')
-    <div class="p-5 rounded-lg bg-white"></div>
+    @livewire('surat-keluar.belum-dinomori')
 @endsection
