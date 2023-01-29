@@ -201,6 +201,6 @@
                 </tbody>
             </table>
         </div>
-        {{ $surats->links() }}
+        {{ $surats->links('vendor.pagination.tailwind') }}
     </div>
 @endsection
