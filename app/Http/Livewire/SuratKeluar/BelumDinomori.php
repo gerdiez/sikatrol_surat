@@ -19,10 +19,10 @@ class BelumDinomori extends Component
         $surat = Surat::latest();
         $this->search === null
             ? $surat
-                ->where("disposisi", "false")
+                ->where("status", "Belum Dinomori")
                 ->where("jenis_surat", "Surat Keluar")
             : $surat
-                ->where("disposisi", "false")
+                ->where("status", "Belum Dinomori")
                 ->where("jenis_surat", "Surat Keluar")
                 ->where($this->category, "like", "%" . $this->search . "%");
 
