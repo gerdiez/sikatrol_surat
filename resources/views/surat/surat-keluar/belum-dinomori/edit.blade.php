@@ -1,11 +1,11 @@
 @extends('layouts.main')
 
 @section('name')
-    <x-back-page route="{{ route('surat.keluar.belum.dinomori') }}" name="EDIT SURAT MASUK BELUM DISPOSISI" />
+    <x-back-page route="{{ route('surat.keluar.belum.dinomori') }}" name="EDIT SURAT MASUK BELUM DINOMORI" />
 @endsection
 
 @section('content')
-    <form action="{{ route('surat.keluar.belum.dinomori.update', $id) }}" method="post" class="p-5 bg-white">
+    <form action="{{ route('surat.keluar.belum.dinomori.update', $id) }}" method="post" enctype="multipart/form-data" class="p-5 bg-white">
         @method('put')
         @csrf
         {{-- <div class="grid grid-cols-7">
