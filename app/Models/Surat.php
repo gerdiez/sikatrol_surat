@@ -10,4 +10,8 @@ class Surat extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
+
+    protected $casts = [
+        'start_date' => 'date:Y-m-d'
+    ];
 }
