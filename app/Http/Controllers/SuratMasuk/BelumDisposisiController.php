@@ -6,7 +6,7 @@ use App\Models\Surat;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class MasukBelumController extends Controller
+class BelumDisposisiController extends Controller
 {
     public function index()
     {

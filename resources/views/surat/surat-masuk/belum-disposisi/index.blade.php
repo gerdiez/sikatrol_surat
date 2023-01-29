@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <div class="p-5 rounded-lg bg-white">
+    {{-- <div class="p-5 rounded-lg bg-white">
         <div class="flex @can('tata usaha') justify-between @else justify-end @endcan items-center">
             @can('tata usaha')
                 <a href="{{ route('surat.masuk.belum.create') }}"
@@ -218,15 +218,17 @@
             </form>
             {{ $surats->links('vendor.pagination.tailwind') }}
         </nav>
-    </div>
+    </div> --}}
+    @livewire('surat-masuk.belum-disposisi')
 @endsection
 
 @push('script')
-    <script>
+    {{-- <script>
         let select = document.getElementById("paginate");
+
         function onChange() {
             let value = select.value;
             document.getElementById('submitPaginate').click()
         }
-    </script>
+    </script> --}}
 @endpush
