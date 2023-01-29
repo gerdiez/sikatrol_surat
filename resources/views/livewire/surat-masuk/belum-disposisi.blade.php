@@ -43,7 +43,7 @@
             {{ session('delete') }}
         </div>
     @endif
-    <div class="my-5 h-[70vh] overflow-auto">
+    <div class="my-5 h-[68vh] overflow-auto">
         <table class="w-full text-sm border border-gray-200 text-left text-gray-500">
             <thead class="sticky top-[-1px] z-10 text-xs text-gray-700 uppercase bg-gray-50 text-center">
                 <tr>
