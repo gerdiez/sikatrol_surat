@@ -5,6 +5,7 @@ namespace App\Http\Livewire\SuratKeluar;
 use App\Models\Surat;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Illuminate\Support\Facades\Auth;
 
 class Pengajuan extends Component
 {
@@ -17,14 +18,29 @@ class Pengajuan extends Component
     public function render()
     {
         $surat = Surat::latest();
-        $this->search === null
-            ? $surat
-                ->where("status", "Pengajuan")
-                ->where("jenis_surat", "Surat Keluar")
-            : $surat
-                ->where("status", "Pengajuan")
-                ->where("jenis_surat", "Surat Keluar")
-                ->where($this->category, "like", "%" . $this->search . "%");
+
+        if (Auth::user()->hasRole("unit")) {
+            $name = Auth::user()->name;
+            $this->search === null
+                ? $surat
+                    ->where("status", "Pengajuan")
+                    ->where("jenis_surat", "Surat Keluar")
+                    ->where("surat_dari", $name)
+                : $surat
+                    ->where("status", "Pengajuan")
+                    ->where("jenis_surat", "Surat Keluar")
+                    ->where($this->category, "like", "%" . $this->search . "%")
+                    ->where("surat_dari", $name);
+        } else {
+            $this->search === null
+                ? $surat
+                    ->where("status", "Pengajuan")
+                    ->where("jenis_surat", "Surat Keluar")
+                : $surat
+                    ->where("status", "Pengajuan")
+                    ->where("jenis_surat", "Surat Keluar")
+                    ->where($this->category, "like", "%" . $this->search . "%");
+        }
 
         return view("livewire.surat-keluar.pengajuan", [
             "surats" => $surat->paginate($this->paginate),
