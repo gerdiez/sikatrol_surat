@@ -3,32 +3,26 @@
         @can('tata usaha')
             <a href="{{ route('surat.masuk.belum.create') }}"
                 class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
-                Tambah Surat</a>
+                Tambah Surat {{ $category }}</a>
         @endcan
-        <form action="{{ route('surat.masuk.belum') }}" method="get">
-            <div class="relative w-96 flex">
-                <div
-                    class="relative pl-10 text-gray-900 bg-gray-50 rounded-lg rounded-r-none border border-r-0 border-gray-300">
-                    <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                    </div>
-                    <select name="category"
-                        class="appearance-none text-sm text-gray-90 py-2 pr-8 bg-gray-50 focus:outline-none">
-                        @foreach ($categories as $key => $category)
-                            @if (request('category') == $key)
-                                <option selected value="{{ $key }}">{{ $category }}</option>
-                            @else
-                                <option value="{{ $key }}">{{ $category }}</option>
-                            @endif
-                        @endforeach
-                    </select>
-                    <i class="absolute right-2 top-2 fa-solid fa-chevron-down ml-auto"></i>
+        <div class="relative w-96 flex">
+            <div
+                class="relative pl-10 text-gray-900 bg-gray-50 rounded-lg rounded-r-none border border-r-0 border-gray-300">
+                <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                    <i class="fa-solid fa-magnifying-glass"></i>
                 </div>
-                <input type="text" name="search"
-                    class="block p-2 text-sm text-gray-900 bg-gray-50 rounded-lg rounded-l-none border border-l-0 border-gray-300 focus:outline-none"
-                    value="{{ request('search') }}" placeholder="Cari Surat Masuk">
+                <select wire:model="category"
+                    class="appearance-none text-sm text-gray-90 py-2 pr-8 bg-gray-50 focus:outline-none">
+                    @foreach ($categories as $key => $category)
+                        <option value="{{ $key }}">{{ $category }}</option>
+                    @endforeach
+                </select>
+                <i class="absolute right-2 top-2 fa-solid fa-chevron-down ml-auto"></i>
             </div>
-        </form>
+            <input type="text" wire:model="search"
+                class="block p-2 text-sm text-gray-900 bg-gray-50 rounded-lg rounded-l-none border border-l-0 border-gray-300 focus:outline-none"
+                placeholder="Cari Surat Masuk">
+        </div>
     </div>
     @if (session()->has('create'))
         <div class="p-4 mb-4 text-sm text-green-700 font-medium rounded-lg bg-green-50">
