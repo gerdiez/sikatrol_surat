@@ -21,7 +21,7 @@
             <li x-data="{ dropdown: false }" :class="{ 'flex justify-end': !sidebarOpen }">
                 <x-sidebar.menu-dropdown name="Surat Keluar" />
                 <ul class="space-y-1 py-1 hidden" :class="{ '!block': dropdown }">
-                    <x-sidebar.sub-menu name="Belum Disposisi" route="{{ route('surat.keluar') }}" />
+                    <x-sidebar.sub-menu name="Belum Dinomori" route="{{ route('surat.keluar') }}" />
                     <x-sidebar.sub-menu name="Pengajuan" route="#" />
                     <x-sidebar.sub-menu name="Disetujui" route="#" />
                 </ul>
