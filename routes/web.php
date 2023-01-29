@@ -4,8 +4,8 @@ use App\Http\Controllers\AgendaController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\SuratKeluar\BelumDinomoriController;
 use App\Http\Controllers\SuratTugasController;
-use App\Http\Controllers\SuratKeluarController;
 use App\Http\Controllers\SuratPerintahController;
 use App\Http\Controllers\SuratKeputusanController;
 use App\Http\Controllers\SuratMasuk\BelumDisposisiController;
@@ -48,9 +48,7 @@ Route::middleware("auth")->group(function () {
                 "update" => "surat.masuk.belum.update",
                 "destroy" => "surat.masuk.belum.destroy",
             ],
-            // 'except' => ['show', 'index']
         ]);
-
         Route::resource("/sudah-disposisi", SudahDisposisiController::class, [
             "names" => [
                 "index" => "surat.masuk.sudah",
@@ -64,11 +62,41 @@ Route::middleware("auth")->group(function () {
         ]);
     });
 
-    Route::resource("/surat-keluar", SuratKeluarController::class, [
-        "names" => [
-            "index" => "surat.keluar",
-        ],
-    ]);
+    Route::prefix("surat-keluar")->group(function () {
+        Route::resource("/belum-dinomori", BelumDinomoriController::class, [
+            "names" => [
+                "index" => "surat.keluar.belum.dinomori",
+                "create" => "surat.keluar.belum.dinomori.create",
+                "store" => "surat.keluar.belum.dinomori.store",
+                "edit" => "surat.keluar.belum.dinomori.edit",
+                "show" => "surat.keluar.belum.dinomori.show",
+                "update" => "surat.keluar.belum.dinomori.update",
+                "destroy" => "surat.keluar.belum.dinomori.destroy",
+            ],
+        ]);
+        Route::resource("/pengajuan", BelumDinomoriController::class, [
+            "names" => [
+                "index" => "surat.keluar.pengajuan",
+                "create" => "surat.keluar.pengajuan.create",
+                "store" => "surat.keluar.pengajuan.store",
+                "edit" => "surat.keluar.pengajuan.edit",
+                "show" => "surat.keluar.pengajuan.show",
+                "update" => "surat.keluar.pengajuan.update",
+                "destroy" => "surat.keluar.pengajuan.destroy",
+            ],
+        ]);
+        Route::resource("/disetujui", BelumDinomoriController::class, [
+            "names" => [
+                "index" => "surat.keluar.disetujui",
+                "create" => "surat.keluar.disetujui.create",
+                "store" => "surat.keluar.disetujui.store",
+                "edit" => "surat.keluar.disetujui.edit",
+                "show" => "surat.keluar.disetujui.show",
+                "update" => "surat.keluar.disetujui.update",
+                "destroy" => "surat.keluar.disetujui.destroy",
+            ],
+        ]);
+    });
 
     Route::resource("/surat-perintah", SuratPerintahController::class, [
         "names" => [
