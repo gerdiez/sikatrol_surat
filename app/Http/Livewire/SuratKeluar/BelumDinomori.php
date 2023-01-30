@@ -13,7 +13,7 @@ class BelumDinomori extends Component
 
     public $search;
     public $paginate = 10;
-    public $category;
+    public $category = "no_surat";
 
     public function render()
     {
