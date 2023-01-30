@@ -25,11 +25,19 @@ class Agenda extends Component
     public function render()
     {
         $surat = Surat::latest();
-
-        $surat->whereBetween("tanggal_kegiatan", [
-            $this->start_date,
-            $this->end_date,
-        ]);
+        if ($this->start_date !== null && $this->end_date !== null) {
+            $surat->whereBetween("tanggal_kegiatan", [
+                $this->start_date,
+                $this->end_date,
+            ]);
+        } else if ($this->start_date == null && $this->end_date == null) {
+            $surat = Surat::latest();
+        } else if ($this->start_date == Carbon::now()->format("Y-m-d") && $this->end_date == null) {
+            $surat->whereBetween("tanggal_kegiatan", [
+                $this->start_date,
+                "3000-01-01",
+            ]);
+        }
 
         return view("livewire.agenda", [
             "surats" => $surat->paginate($this->paginate),
