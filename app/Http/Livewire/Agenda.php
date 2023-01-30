@@ -32,9 +32,7 @@ class Agenda extends Component
 
         $this->search === null
             ? $surat
-            : $surat
-                ->where("jenis_surat", "Surat Tugas")
-                ->where($this->category, "like", "%" . $this->search . "%");
+            : $surat->where($this->category, "like", "%" . $this->search . "%");
 
         return view("livewire.agenda", [
             "surats" => $surat->paginate($this->paginate),
