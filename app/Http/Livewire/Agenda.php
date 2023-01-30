@@ -17,34 +17,30 @@ class Agenda extends Component
     public $start_date;
     public $end_date;
 
+    public function mount()
+    {
+        $this->start_date = Carbon::now()->format("Y-m-d");
+    }
+
     public function render()
     {
-        // $this->start_date = Carbon::now();
-        // $this->start_date = Carbon::now();
         $surat = Surat::latest();
-        // $from = $request->from;
-        // $to = $request->to;
-        // $title = "Sales From: " . $from . " To: " . $to;
-        // $sales = Sale::whereBetween("created_at", [
-        //     $from . " 00:00:00",
-        //     $to . " 23:59:59",
-        // ])->get();
 
-        $this->search === null
-            ? $surat
-            : $surat->where($this->category, "like", "%" . $this->search . "%");
+        $surat->whereBetween("tanggal_kegiatan", [
+            $this->start_date,
+            $this->end_date,
+        ]);
 
         return view("livewire.agenda", [
             "surats" => $surat->paginate($this->paginate),
-            "categories" => [
-                "tanggal_kegiatan" => "Tgl Kegiatan",
-                "no_surat" => "No Surat",
-                "surat_dari" => "Surat Dari",
-                "kategori" => "Kategori",
-                "perihal" => "Perihal",
-                "sifat" => "Sifat",
-            ],
             "options" => [10, 20, 30],
         ]);
+    }
+
+    public function clear()
+    {
+        $this->start_date = null;
+        $this->end_date = null;
+        $this->render();
     }
 }

@@ -3,7 +3,7 @@
         <a href="{{ route('agenda.export') }}"
             class="text-white bg-gradient-to-r from-green-500 via-green-600 to-green-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
             Download Excel</a>
-        <div class="relative w-96 flex">
+        {{-- <div class="relative w-96 flex">
             <div
                 class="relative pl-10 text-gray-900 bg-gray-50 rounded-lg rounded-r-none border border-r-0 border-gray-300">
                 <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
@@ -20,33 +20,39 @@
             <input type="text" wire:model="search"
                 class="block p-2 text-sm text-gray-900 bg-gray-50 rounded-lg rounded-l-none border border-l-0 border-gray-300 focus:outline-none"
                 placeholder="Cari Surat Masuk">
-        </div>
-    </div>
-    {{-- <div class="flex justify-evenly">
-    <div class="relative w-96 flex">
-        <div
-            class="relative pl-10 text-gray-900 bg-gray-50 rounded-lg rounded-r-none border border-r-0 border-gray-300">
-            <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
-                <i class="fa-solid fa-magnifying-glass"></i>
+        </div> --}}
+        <div class="flex gap-5">
+            <div class="relative flex">
+                <div
+                    class="relative pl-20 text-gray-900 bg-gray-50 rounded-lg rounded-r-none border border-r-0 border-gray-300">
+                    <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <p class="text-sm pl-3">From</p>
+                    </div>
+                </div>
+                <input type="date" wire:model="start_date"
+                    class="block p-2 text-sm text-gray-900 bg-gray-50 rounded-lg rounded-l-none border border-l-0 border-gray-300 focus:outline-none"
+                    placeholder="Tanggal Sekarang">
             </div>
-        </div>
-        <input type="date" wire:model.debounce.300ms="start_date"
-            value="{{ Carbon\Carbon::parse($start_date)->format('Y-m-d') }}"
-            class="block p-2 text-sm text-gray-900 bg-gray-50 rounded-lg rounded-l-none border border-l-0 border-gray-300 focus:outline-none"
-            placeholder="Tanggal Sekarang">
-    </div>
-    <div class="relative w-96 flex">
-        <div
-            class="relative pl-10 text-gray-900 bg-gray-50 rounded-lg rounded-r-none border border-r-0 border-gray-300">
-            <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
-                <i class="fa-solid fa-magnifying-glass"></i>
+            <div class="relative flex">
+                <div
+                    class="relative pl-16 text-gray-900 bg-gray-50 rounded-lg rounded-r-none border border-r-0 border-gray-300">
+                    <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <p class="text-sm pl-4">To</p>
+                    </div>
+                </div>
+                <input type="date" wire:model.debounce.300ms="end_date"
+                    class="block p-2 text-sm text-gray-900 bg-gray-50 rounded-lg rounded-l-none border border-l-0 border-gray-300 focus:outline-none"
+                    placeholder="Tanggal Sampai">
             </div>
+            <button wire:click="clear"
+                class="inline-flex items-center text-gray-500 bg-gray-50 border border-gray-300 focus:outline-none hover:bg-white focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-3 py-1.5"
+                type="button">
+                Clear
+            </button>
         </div>
-        <input type="date" wire:model="end-date"
-            class="block p-2 text-sm text-gray-900 bg-gray-50 rounded-lg rounded-l-none border border-l-0 border-gray-300 focus:outline-none"
-            placeholder="Tanggal Sampai">
     </div>
-</div> --}}
     @if (session()->has('create'))
         <div class="p-4 my-4 text-sm text-green-700 font-medium rounded-lg bg-green-50">
             {{ session('create') }}
