@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\SuratKeluar;
 
+use App\Models\Notif;
 use App\Models\Surat;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -12,8 +13,10 @@ class BelumDinomoriController extends Controller
 {
     public function index()
     {
+        $getSum = new Notif();
         return view("surat.surat-keluar.belum-dinomori.index", [
             "title" => "Surat Keluar",
+            "notif" => $getSum->index(),
         ]);
     }
 

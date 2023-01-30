@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\SuratKeluar;
 
+use App\Models\Notif;
 use App\Models\Surat;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -11,8 +12,10 @@ class DisetujuiController extends Controller
 {
     public function index()
     {
+        $getSum = new Notif();
         return view("surat.surat-keluar.disetujui.index", [
             "title" => "Surat Keluar",
+            "notif" => $getSum->index(),
         ]);
     }
 

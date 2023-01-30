@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\SuratMasuk;
 
+use App\Models\Notif;
 use App\Models\Surat;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -10,6 +11,7 @@ class BelumDisposisiController extends Controller
 {
     public function index()
     {
+        $getSum = new Notif();
         $surat = Surat::latest();
         $paginate = request("paginate") ?? 10;
         if (request("search")) {
@@ -43,6 +45,7 @@ class BelumDisposisiController extends Controller
             "categories" => $category,
             "paginate" => $paginate,
             "options" => [10, 20, 30],
+            "notif" => $getSum->index(),
         ]);
     }
 

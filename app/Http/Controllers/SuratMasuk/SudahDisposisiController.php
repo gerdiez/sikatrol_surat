@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\SuratMasuk;
 
+use App\Models\Notif;
 use App\Models\Surat;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -12,6 +13,7 @@ class SudahDisposisiController extends Controller
 {
     public function index()
     {
+        $getSum = new Notif();
         $surat = Surat::latest();
         $paginate = request("paginate") ?? 10;
         if (Auth::user()->hasRole("unit")) {
@@ -54,6 +56,7 @@ class SudahDisposisiController extends Controller
             "categories" => $category,
             "paginate" => $paginate,
             "options" => [10, 20, 30],
+            "notif" => $getSum->index(),
         ]);
     }
 

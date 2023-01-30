@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Notif;
 use App\Models\Surat;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -10,8 +11,10 @@ class SuratPerintahController extends Controller
 {
     public function index()
     {
+        $getSum = new Notif();
         return view("surat.surat-perintah.index", [
             "title" => "Surat Perintah",
+            "notif" => $getSum->index(),
         ]);
     }
 
