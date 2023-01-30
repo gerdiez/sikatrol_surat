@@ -80,5 +80,27 @@ class SuratSeeder extends Seeder
                 ]);
             }
         }
+
+        // Surat Perintah
+        for ($i = 0; $i < 3; $i++) {
+            foreach ($unitKerja as $unit) {
+                Surat::create([
+                    "surat_dari" => fake()->name(),
+                    "jenis_surat" => "Surat Perintah",
+                    "no_surat" => fake()->phoneNumber(),
+                    "tanggal_surat" => fake()->dateTime(),
+                    "sifat" => $sifat[array_rand($sifat)],
+                    "no_agenda" => fake()->buildingNumber(),
+                    "tanggal_kegiatan" => fake()->dateTime(),
+                    "kategori" => fake()->streetName(),
+                    "perihal" => fake()->realText(20),
+                    "file" => fake()->mimeType(),
+                    "file_name" => "Surat Perintah.docx",
+                    "disposisi" => "",
+                    "status" => "",
+                    "diteruskan_ke" => $unit,
+                ]);
+            }
+        }
     }
 }

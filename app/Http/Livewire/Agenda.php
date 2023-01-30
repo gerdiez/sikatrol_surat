@@ -19,7 +19,7 @@ class Agenda extends Component
 
     public function render()
     {
-        $this->start_date = Carbon::now();
+        // $this->start_date = Carbon::now();
         // $this->start_date = Carbon::now();
         $surat = Surat::latest();
         // $from = $request->from;

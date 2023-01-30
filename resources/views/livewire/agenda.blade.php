@@ -1,8 +1,4 @@
-{{-- <div class="p-5 rounded-lg bg-white"> --}}
-{{-- <input type="date" wire:model.debounce.300ms="start_date"
-        class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-        value="{{ Carbon\Carbon::parse('')->format('Y-m-d') }}"> --}}
-{{-- </div> --}}
+<div class="p-5 rounded-lg bg-white">
 <div class="flex justify-end items-center">
     <div class="relative w-96 flex">
         <div class="relative pl-10 text-gray-900 bg-gray-50 rounded-lg rounded-r-none border border-r-0 border-gray-300">
@@ -22,7 +18,7 @@
             placeholder="Cari Surat Masuk">
     </div>
 </div>
-<div class="flex justify-evenly">
+{{-- <div class="flex justify-evenly">
     <div class="relative w-96 flex">
         <div
             class="relative pl-10 text-gray-900 bg-gray-50 rounded-lg rounded-r-none border border-r-0 border-gray-300">
@@ -46,7 +42,7 @@
             class="block p-2 text-sm text-gray-900 bg-gray-50 rounded-lg rounded-l-none border border-l-0 border-gray-300 focus:outline-none"
             placeholder="Tanggal Sampai">
     </div>
-</div>
+</div> --}}
 @if (session()->has('create'))
     <div class="p-4 my-4 text-sm text-green-700 font-medium rounded-lg bg-green-50">
         {{ session('create') }}
