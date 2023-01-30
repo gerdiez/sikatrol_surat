@@ -6,8 +6,8 @@
     <title>{{ $title }} - SIKATROL</title>
     {{-- @vite('resources/css/app.css')
     @vite('resources/js/app.js') --}}
-    <link rel="stylesheet" href="{{ asset('build/assets/app-dd2a727b.css') }}">
-    <script src="{{ asset('build/assets/app-76774767.js') }}"></script>
+    <link rel="stylesheet" href="{{ asset('build/assets/app.css') }}">
+    <script src="{{ asset('build/assets/app.js') }}"></script>
 </head>
 
 <body>

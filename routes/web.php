@@ -1,15 +1,16 @@
 <?php
 
-use App\Http\Controllers\AgendaController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\LoginController;
-use App\Http\Controllers\SuratKeluar\BelumDinomoriController;
-use App\Http\Controllers\SuratKeluar\DisetujuiController;
-use App\Http\Controllers\SuratKeluar\PengajuanController;
+use App\Http\Controllers\AgendaController;
 use App\Http\Controllers\SuratTugasController;
 use App\Http\Controllers\SuratPerintahController;
 use App\Http\Controllers\SuratKeputusanController;
+use App\Http\Controllers\SuratKeluar\DisetujuiController;
+use App\Http\Controllers\SuratKeluar\PengajuanController;
+use App\Http\Controllers\SuratKeluar\BelumDinomoriController;
 use App\Http\Controllers\SuratMasuk\BelumDisposisiController;
 use App\Http\Controllers\SuratMasuk\SudahDisposisiController;
 
@@ -139,16 +140,13 @@ Route::middleware("auth")->group(function () {
     Route::resource("/agenda", AgendaController::class, [
         "names" => [
             "index" => "agenda",
-            "create" => "agenda.create",
-            "store" => "agenda.store",
-            "edit" => "agenda.edit",
-            "show" => "agenda.show",
-            "update" => "agenda.update",
-            "destroy" => "agenda.destroy",
         ],
     ]);
+    Route::get("/agenda/export_excel", [AgendaController::class, "show"])->name(
+        "agenda.export"
+    );
 });
 
-Route::get('/storage-link', function () {
-    Artisan::call('storage:link');
+Route::get("/storage-link", function () {
+    Artisan::call("storage:link");
 });

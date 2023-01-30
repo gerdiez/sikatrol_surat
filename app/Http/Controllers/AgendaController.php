@@ -2,46 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Surat;
-use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\SuratExport;
 
 class AgendaController extends Controller
 {
     public function index()
     {
-
         return view('agenda.index', [
             'title' => 'Agenda',
         ]);
     }
 
-    public function create()
+    public function show()
     {
-        //
-    }
-
-    public function store(Request $request)
-    {
-        //
-    }
-
-    public function show(Surat $surat)
-    {
-        //
-    }
-
-    public function edit(Surat $surat)
-    {
-        //
-    }
-
-    public function update(Request $request, Surat $surat)
-    {
-        //
-    }
-
-    public function destroy(Surat $surat)
-    {
-        //
+        return Excel::download(new SuratExport, 'agenda.xlsx');
     }
 }
