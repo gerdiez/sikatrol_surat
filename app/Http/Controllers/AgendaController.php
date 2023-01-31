@@ -18,8 +18,19 @@ class AgendaController extends Controller
         ]);
     }
 
-    public function show()
+    public function show($id)
     {
-        return Excel::download(new SuratExport(), "agenda.xlsx");
+        if ($id === "export") {
+            // dd($id);
+            return Excel::download(new SuratExport(), "agenda.xlsx");
+        } else {
+            $getSum = new Notif();
+            return view("agenda.detail", [
+                "title" => "Detail Agenda",
+                "surats" => Surat::where("id", $id)->get(),
+                "notif" => $getSum->index(),
+            ]);
+        }
+
     }
 }

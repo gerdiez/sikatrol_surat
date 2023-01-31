@@ -1,26 +1,8 @@
 <div class="p-5 rounded-lg bg-white">
     <div class="flex justify-between items-center">
-        <a href="{{ route('agenda.export') }}"
+        <a href="{{ route('agenda.show', 'export') }}"
             class="text-white bg-gradient-to-r from-green-500 via-green-600 to-green-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
             Download Excel</a>
-        {{-- <div class="relative w-96 flex">
-            <div
-                class="relative pl-10 text-gray-900 bg-gray-50 rounded-lg rounded-r-none border border-r-0 border-gray-300">
-                <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </div>
-                <select wire:model="category"
-                    class="appearance-none text-sm text-gray-90 py-2 pr-8 bg-gray-50 focus:outline-none">
-                    @foreach ($categories as $key => $category)
-                        <option value="{{ $key }}">{{ $category }}</option>
-                    @endforeach
-                </select>
-                <i class="absolute right-2 top-2 fa-solid fa-chevron-down ml-auto"></i>
-            </div>
-            <input type="text" wire:model="search"
-                class="block p-2 text-sm text-gray-900 bg-gray-50 rounded-lg rounded-l-none border border-l-0 border-gray-300 focus:outline-none"
-                placeholder="Cari Surat Masuk">
-        </div> --}}
         <div class="flex gap-5">
             <div class="relative flex">
                 <div
@@ -94,6 +76,9 @@
                     <th scope="col" class="py-3 px-6">
                         AKSI
                     </th>
+                    <th scope="col" class="py-3 px-6">
+                        JENIS SURAT
+                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -134,6 +119,9 @@
                                         <i class="fa-solid fa-eye rounded-md border border-blue-400 p-1"></i>
                                     </a>
                                 </div>
+                            </td>
+                            <td class="py-4 px-6">
+                                {{ $surat->jenis_surat }}
                             </td>
                         </tr>
                     @endforeach

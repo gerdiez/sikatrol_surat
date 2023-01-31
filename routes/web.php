@@ -140,11 +140,12 @@ Route::middleware("auth")->group(function () {
     Route::resource("/agenda", AgendaController::class, [
         "names" => [
             "index" => "agenda",
+            "show" => 'agenda.show'
         ],
     ]);
-    Route::get("/agenda/export_excel", [AgendaController::class, "show"])->name(
-        "agenda.export"
-    );
+    // Route::get("/agenda/export_excel", [AgendaController::class, "show"])->name(
+    //     "agenda.export"
+    // );
 });
 
 Route::get("/storage-link", function () {
