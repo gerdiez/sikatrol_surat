@@ -20,8 +20,10 @@ class SuratKeputusanController extends Controller
 
     public function create()
     {
+        $getSum = new Notif();
         return view("surat.surat-keputusan.create", [
             "title" => "Tambah Surat Keputusan",
+            "notif" => $getSum->index(),
         ]);
     }
 
@@ -52,14 +54,17 @@ class SuratKeputusanController extends Controller
 
     public function show($id)
     {
+        $getSum = new Notif();
         return view("surat.surat-keputusan.detail", [
             "title" => "Detail Surat Keputusan",
             "surats" => Surat::where("id", $id)->get(),
+            "notif" => $getSum->index(),
         ]);
     }
 
     public function edit($id)
     {
+        $getSum = new Notif();
         $unitKerja = [
             "Umpeg",
             "Kesejahteraan Sosial",
@@ -79,6 +84,7 @@ class SuratKeputusanController extends Controller
             "surats" => Surat::where("id", $id)->get(),
             "id" => $id,
             "unitKerja" => $unitKerja,
+            "notif" => $getSum->index(),
         ]);
     }
 

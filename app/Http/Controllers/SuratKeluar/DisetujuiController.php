@@ -21,18 +21,22 @@ class DisetujuiController extends Controller
 
     public function show($id)
     {
+        $getSum = new Notif();
         return view("surat.surat-keluar.disetujui.detail", [
             "title" => "Detail Surat Keluar",
             "surats" => Surat::where("id", $id)->get(),
+            "notif" => $getSum->index(),
         ]);
     }
 
     public function edit($id)
     {
+        $getSum = new Notif();
         return view("surat.surat-keluar.disetujui.edit", [
             "title" => "Edit Surat Keluar",
             "surats" => Surat::where("id", $id)->get(),
             "id" => $id,
+            "notif" => $getSum->index(),
         ]);
     }
 

@@ -51,8 +51,10 @@ class BelumDisposisiController extends Controller
 
     public function create()
     {
+        $getSum = new Notif();
         return view("surat.surat-masuk.belum-disposisi.create", [
             "title" => "Tambah Surat Masuk",
+            "notif" => $getSum->index(),
         ]);
     }
 
@@ -103,18 +105,22 @@ class BelumDisposisiController extends Controller
 
     public function show($id)
     {
+        $getSum = new Notif();
         return view("surat.surat-masuk.belum-disposisi.detail", [
             "title" => "Detail Surat Masuk",
             "surats" => Surat::where("id", $id)->get(),
+            "notif" => $getSum->index(),
         ]);
     }
 
     public function edit($id)
     {
+        $getSum = new Notif();
         return view("surat.surat-masuk.belum-disposisi.edit", [
             "title" => "Edit Surat Masuk",
             "surats" => Surat::where("id", $id)->get(),
             "id" => $id,
+            "notif" => $getSum->index(),
         ]);
     }
 

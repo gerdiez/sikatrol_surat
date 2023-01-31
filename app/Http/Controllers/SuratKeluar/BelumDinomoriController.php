@@ -22,8 +22,10 @@ class BelumDinomoriController extends Controller
 
     public function create()
     {
+        $getSum = new Notif();
         return view("surat.surat-keluar.belum-dinomori.create", [
             "title" => "Tambah Surat Keluar",
+            "notif" => $getSum->index(),
         ]);
     }
 
@@ -67,14 +69,17 @@ class BelumDinomoriController extends Controller
 
     public function show($id)
     {
+        $getSum = new Notif();
         return view("surat.surat-keluar.belum-dinomori.detail", [
             "title" => "Detail Surat Keluar",
             "surats" => Surat::where("id", $id)->get(),
+            "notif" => $getSum->index(),
         ]);
     }
 
     public function edit($id)
     {
+        $getSum = new Notif();
         $unitKerja = [
             "Umpeg",
             "Kesejahteraan Sosial",
@@ -94,6 +99,7 @@ class BelumDinomoriController extends Controller
             "surats" => Surat::where("id", $id)->get(),
             "id" => $id,
             "unitKerja" => $unitKerja,
+            "notif" => $getSum->index(),
         ]);
     }
 

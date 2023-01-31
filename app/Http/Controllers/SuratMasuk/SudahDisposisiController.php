@@ -62,14 +62,17 @@ class SudahDisposisiController extends Controller
 
     public function show($id)
     {
+        $getSum = new Notif();
         return view("surat.surat-masuk.sudah-disposisi.detail", [
             "title" => "Detail Surat Masuk",
             "surats" => Surat::where("id", $id)->get(),
+            "notif" => $getSum->index(),
         ]);
     }
 
     public function edit($id)
     {
+        $getSum = new Notif();
         $unitKerja = [
             "Umpeg",
             "Kesejahteraan Sosial",
@@ -89,6 +92,7 @@ class SudahDisposisiController extends Controller
             "surats" => Surat::where("id", $id)->get(),
             "id" => $id,
             "unitKerja" => $unitKerja,
+            "notif" => $getSum->index(),
         ]);
     }
 

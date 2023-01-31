@@ -20,8 +20,10 @@ class SuratTugasController extends Controller
 
     public function create()
     {
+        $getSum = new Notif();
         return view("surat.surat-tugas.create", [
             "title" => "Tambah Surat Tugas",
+            "notif" => $getSum->index(),
         ]);
     }
 
@@ -52,14 +54,17 @@ class SuratTugasController extends Controller
 
     public function show($id)
     {
+        $getSum = new Notif();
         return view("surat.surat-tugas.detail", [
             "title" => "Detail Surat Tugas",
             "surats" => Surat::where("id", $id)->get(),
+            "notif" => $getSum->index(),
         ]);
     }
 
     public function edit($id)
     {
+        $getSum = new Notif();
         $unitKerja = [
             "Umpeg",
             "Kesejahteraan Sosial",
@@ -79,6 +84,7 @@ class SuratTugasController extends Controller
             "surats" => Surat::where("id", $id)->get(),
             "id" => $id,
             "unitKerja" => $unitKerja,
+            "notif" => $getSum->index(),
         ]);
     }
 
