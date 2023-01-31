@@ -31,7 +31,7 @@ class Notif
     {
         return count(
             Surat::where("jenis_surat", "Surat Masuk")
-                ->where("status", "false")
+                ->where("disposisi", "false")
                 ->get()
         );
     }
@@ -40,7 +40,7 @@ class Notif
     {
         return count(
             Surat::where("jenis_surat", "Surat Masuk")
-                ->where("status", "true")
+                ->where("disposisi", "true")
                 ->get()
         );
     }
