@@ -19,7 +19,6 @@ class LoginController extends Controller
     {
         $credentials = $request->validate([
             'username' => 'required',
-            // 'name' => 'required',
             'password' => 'required'
         ]);
 
@@ -28,7 +27,7 @@ class LoginController extends Controller
             return redirect()->intended('/agenda');
         }
 
-        return back();
+        return back()->with('failed', "Login Gagal, Username/Password Salah");
     }
     
     public function logout()

@@ -12,6 +12,11 @@
                     <form action="/login" method="post">
                         @csrf
                         <h1 class="text-center lg:text-left text-4xl font-extrabold mb-0 mr-4">REGOL SURAT</h1>
+                        @if (session()->has('failed'))
+                            <div class="p-4 my-4 text-sm text-red-700 font-medium rounded-lg bg-red-50">
+                                {{ session('failed') }}
+                            </div>
+                        @endif
                         <div
                             class="flex items-center my-4 before:flex-1 before:border-t before:border-gray-300 before:mt-0.5 after:flex-1 after:border-t after:border-gray-300 after:mt-0.5">
                         </div>
