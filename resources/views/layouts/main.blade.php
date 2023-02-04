@@ -1,7 +1,9 @@
 @php
     $cwd = getcwd();
-    $css = basename(glob('/Users/abuabdirohman/Documents/Project/prj-sikatrol-surat/sikatrol_surat/public/build/assets/*.css')[0], '.css');
-    $js = basename(glob('/Users/abuabdirohman/Documents/Project/prj-sikatrol-surat/sikatrol_surat/public/build/assets/*.js')[0], '.js');
+    $cssName = basename(glob($cwd . '/build/assets/*.css')[0], '.css');
+    $jsName = basename(glob($cwd . '/build/assets/*.js')[0], '.js');
+    $css = asset('build/assets/' . $cssName . '.css');
+    $js = asset('build/assets/' . $jsName . '.js');
 @endphp
 
 <html>
@@ -12,14 +14,8 @@
     <title>{{ $title }} - SIKATROL</title>
     {{-- @vite('resources/css/app.css')
     @vite('resources/js/app.js') --}}
-    <link rel="stylesheet" href="" id="css">
-    <script src="" id="js"></script>
-    <script>
-        const css = "{{ $css }}"
-        const js = "{{ $js }}"
-        document.getElementById('css').href = `{{ asset('build/assets/${css}.css') }}`
-        document.getElementById('js').src = `{{ asset('build/assets/${js}.js') }}`
-    </script>
+    <link rel="stylesheet" href="{{ $css }}" id="css">
+    <script src="{{ $js }}" id="js"></script>
     @livewireStyles
 </head>
 
