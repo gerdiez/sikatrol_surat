@@ -16,7 +16,7 @@ class SuratTugas extends Component
 
     public function render()
     {
-        $surat = Surat::latest();
+        $surat = Surat::orderBy('updated_at', 'desc');
         $this->search === null
             ? $surat->where("jenis_surat", "Surat Tugas")
             : $surat

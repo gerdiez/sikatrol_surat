@@ -16,7 +16,7 @@ class Disetujui extends Component
 
     public function render()
     {
-        $surat = Surat::latest();
+        $surat = Surat::orderBy('updated_at', 'desc');
         $this->search === null
             ? $surat
                 ->where("status", "Disetujui")

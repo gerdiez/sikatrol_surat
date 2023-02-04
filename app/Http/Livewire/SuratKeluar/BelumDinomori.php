@@ -17,7 +17,7 @@ class BelumDinomori extends Component
 
     public function render()
     {
-        $surat = Surat::latest();
+        $surat = Surat::orderBy('updated_at', 'desc');
         if (Auth::user()->hasRole("unit")) {
             $name = Auth::user()->name;
             $this->search === null

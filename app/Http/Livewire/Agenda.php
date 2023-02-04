@@ -24,14 +24,14 @@ class Agenda extends Component
 
     public function render()
     {
-        $surat = Surat::latest();
+        $surat = Surat::orderBy('updated_at', 'desc');
         if ($this->start_date !== null && $this->end_date !== null) {
             $surat->whereBetween("tanggal_kegiatan", [
                 $this->start_date,
                 $this->end_date,
             ]);
         } else if ($this->start_date == null && $this->end_date == null) {
-            $surat = Surat::latest();
+            $surat = Surat::orderBy('updated_at', 'desc');
         } else if ($this->start_date == Carbon::now()->format("Y-m-d") && $this->end_date == null) {
             $surat->whereBetween("tanggal_kegiatan", [
                 $this->start_date,
