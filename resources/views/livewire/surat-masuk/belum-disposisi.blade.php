@@ -105,14 +105,14 @@
                             </td>
                             @canany(['tata usaha', 'sekretaris'])
                                 <td class="py-4">
-                                    @can('tata usaha')
+                                    @canany(['tata usaha', 'sekretaris'])
                                         <div class="tooltip static z-20 hover:relative" data-tip="Lihat">
                                             <a href={{ route('surat.masuk.belum.show', $surat->id) }}
                                                 class="mr-1 text-blue-600 hover:bg-blue-300 hover:rounded-md">
                                                 <i class="fa-solid fa-eye rounded-md border border-blue-400 p-1"></i>
                                             </a>
                                         </div>
-                                    @endcan
+                                    @endcanany
                                     <div class="tooltip static z-20 hover:relative" data-tip="Ubah">
                                         <a href={{ route('surat.masuk.belum.edit', $surat->id) }}
                                             class="mr-1 text-orange-600 hover:bg-orange-300 hover:rounded-md">
