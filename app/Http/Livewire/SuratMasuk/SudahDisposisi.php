@@ -17,7 +17,7 @@ class SudahDisposisi extends Component
 
     public function render()
     {
-        $surat = Surat::orderBy('updated_at', 'desc');
+        $surat = Surat::orderBy('created_at', 'desc');
         if (Auth::user()->hasRole("unit")) {
             $name = Auth::user()->name;
             $this->search === null
@@ -53,5 +53,11 @@ class SudahDisposisi extends Component
             ],
             "options" => [10, 20, 30],
         ]);
+    }
+
+    public function read($id)
+    {
+        Surat::where("id", $id)->update(['dibaca' => 'true']);
+        redirect()->route('surat.masuk.sudah.show', $id);
     }
 }

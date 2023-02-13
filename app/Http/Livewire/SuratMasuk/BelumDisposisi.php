@@ -16,7 +16,7 @@ class BelumDisposisi extends Component
 
     public function render()
     {
-        $surat = Surat::orderBy('updated_at', 'desc');
+        $surat = Surat::orderBy('created_at', 'desc');
         $this->search === null
             ? $surat
                 ->where("disposisi", "false")

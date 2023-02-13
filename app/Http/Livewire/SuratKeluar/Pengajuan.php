@@ -17,7 +17,7 @@ class Pengajuan extends Component
 
     public function render()
     {
-        $surat = Surat::orderBy('updated_at', 'desc');
+        $surat = Surat::orderBy('created_at', 'desc');
 
         if (Auth::user()->hasRole("unit")) {
             $name = Auth::user()->name;
@@ -54,5 +54,11 @@ class Pengajuan extends Component
             ],
             "options" => [10, 20, 30],
         ]);
+    }
+
+    public function read($id)
+    {
+        Surat::where("id", $id)->update(['dibaca' => 'true']);
+        redirect()->route('surat.keluar.pengajuan.show', $id);
     }
 }

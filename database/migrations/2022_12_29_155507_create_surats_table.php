@@ -32,6 +32,7 @@ return new class extends Migration
             $table->string('diteruskan_ke')->nullable();
             $table->text('catatan')->nullable();
             $table->string('dari')->nullable();
+            $table->string('dibaca')->default('false');
         });
     }
 

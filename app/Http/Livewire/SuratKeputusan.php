@@ -16,7 +16,7 @@ class SuratKeputusan extends Component
 
     public function render()
     {
-        $surat = Surat::orderBy('updated_at', 'desc');
+        $surat = Surat::orderBy('created_at', 'desc');
         $this->search === null
             ? $surat->where("jenis_surat", "Surat Keputusan")
             : $surat
@@ -35,5 +35,11 @@ class SuratKeputusan extends Component
             ],
             "options" => [10, 20, 30],
         ]);
+    }
+
+    public function read($id)
+    {
+        Surat::where("id", $id)->update(['dibaca' => 'true']);
+        redirect()->route('surat.keputusan.show', $id);
     }
 }

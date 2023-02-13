@@ -12,7 +12,7 @@ class BelumDisposisiController extends Controller
     public function index()
     {
         $getSum = new Notif();
-        $surat = Surat::orderBy('updated_at', 'desc');
+        $surat = Surat::orderBy('created_at', 'desc');
         $paginate = request("paginate") ?? 10;
         if (request("search")) {
             $surat
