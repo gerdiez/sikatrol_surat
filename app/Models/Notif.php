@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use App\Models\Surat;
 
 class Notif
@@ -24,7 +25,9 @@ class Notif
 
     public function agenda()
     {
-        return count(Surat::get());
+        return count(Surat::whereBetween("tanggal_kegiatan", [
+                Carbon::now()->format("Y-m-d"), null
+            ])->get());
     }
 
     public function belum()
