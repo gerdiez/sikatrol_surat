@@ -10,7 +10,7 @@
     <nav class="flex-1 mx-4 flex flex-col">
         <ul class="mt-14 text-gray-600 text-base font-normal cursor-pointer">
             <x-sidebar.menu name="Agenda" route="{{ route('agenda') }}" id="agenda" />
-            <li x-data="{ dropdown: false }" :class="{ 'flex justify-end': !sidebarOpen }">
+            <li x-data="{ dropdown: true }" :class="{ 'flex justify-end': !sidebarOpen }">
                 <x-sidebar.menu-dropdown name="Surat Masuk" />
                 <ul class="space-y-1 py-1 hidden" :class="{ '!block': dropdown }">
                     <x-sidebar.sub-menu name="Belum Disposisi" route="{{ route('surat.masuk.belum') }}"
@@ -19,7 +19,7 @@
                         id="disposisi" />
                 </ul>
             </li>
-            <li x-data="{ dropdown: false }" :class="{ 'flex justify-end': !sidebarOpen }">
+            <li x-data="{ dropdown: true }" :class="{ 'flex justify-end': !sidebarOpen }">
                 <x-sidebar.menu-dropdown name="Surat Keluar" />
                 <ul class="space-y-1 py-1 hidden" :class="{ '!block': dropdown }">
                     @cannot('sekretaris')
