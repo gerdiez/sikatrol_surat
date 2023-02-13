@@ -19,8 +19,8 @@ return new class extends Migration
             $table->string('surat_dari');
             $table->string('jenis_surat');
             $table->string('no_surat')->nullable();
-            $table->date('tanggal_surat');
-            $table->string('sifat');
+            $table->date('tanggal_surat')->nullable();
+            $table->string('sifat')->nullable();
             $table->string('no_agenda')->nullable();
             $table->date('tanggal_kegiatan')->nullable();
             $table->string('kategori');

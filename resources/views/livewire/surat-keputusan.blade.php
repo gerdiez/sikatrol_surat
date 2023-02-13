@@ -57,9 +57,6 @@
                         PERIHAL
                     </th>
                     <th scope="col" class="py-3 px-6">
-                        SIFAT
-                    </th>
-                    <th scope="col" class="py-3 px-6">
                         TGL KEGIATAN
                     </th>
                     <th scope="col" class="py-3 px-6">
@@ -91,9 +88,6 @@
                             </td>
                             <td class="py-4 px-6">
                                 {{ $surat->perihal }}
-                            </td>
-                            <td class="py-4 px-6">
-                                {{ $surat->sifat }}
                             </td>
                             <td class="py-4 px-6">
                                 {{ $surat->tanggal_kegiatan }}

@@ -33,47 +33,19 @@
         <input type="date" name="tanggal_surat" id="tanggal_surat"
             @if ($action == 'create') value="{{ old('tanggal_surat') }}" class="bg-gray-50 border  @error('tanggal_surat') border-red-600 @enderror col-span-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5"
             @elseif ($action == 'edit') value="{{ $surats[0]->tanggal_surat }}" class="bg-gray-50 border  @error('tanggal_surat') border-red-600 @enderror col-span-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5"
-            @elseif ($action == 'detail') class="bg-white" value="{{ $surats[0]->tanggal_surat }}" disabled @endif
-            required>
+            @elseif ($action == 'detail') class="bg-white" value="{{ $surats[0]->tanggal_surat }}" disabled @endif>
         @error('tanggal_surat')
             <p class="col-start-2 col-end-4 mt-2 text-xs text-red-600 font-medium">{{ $message }}</p>
         @enderror
     </div>
     <div class="mb-10 col-span-3 grid grid-cols-3">
-        <label for="sifat" class="my-auto mb-2 text-sm font-medium text-gray-900">Sifat</label>
-        <div class="col-span-2 relative">
-            @if ($action == 'create')
-                <select name="sifat" id="sifat" required
-                    class="appearance-none bg-gray-50 border  @error('sifat') border-red-600 @enderror col-span-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2.5">
-                    <option selected disabled>Pilih...</option>
-                    <option value="Sangat Segera">Sangat Segera</option>
-                    <option value="Segera">Segera</option>
-                    <option value="Biasa">Biasa</option>
-                </select>
-                <i class="absolute right-4 top-3 fa-solid fa-chevron-down ml-auto"></i>
-            @elseif ($action == 'edit')
-                <select id="" name="sifat" required
-                    class="appearance-none bg-gray-50 border @error('sifat') border-red-600 @enderror  col-span-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2.5">
-                    @if ($surats[0]->sifat == 'Sangat Segera')
-                        <option selected value="Sangat Segera">Sangat Segera</option>
-                        <option value="Segera">Segera</option>
-                        <option value="Biasa">Biasa</option>
-                    @elseif ($surats[0]->sifat == 'Segera')
-                        <option value="Sangat Segera">Sangat Segera</option>
-                        <option selected value="Segera">Segera</option>
-                        <option value="Biasa">Biasa</option>
-                    @elseif ($surats[0]->sifat == 'Biasa')
-                        <option value="Sangat Segera">Sangat Segera</option>
-                        <option value="Segera">Segera</option>
-                        <option selected value="Biasa">Biasa</option>
-                    @endif
-                </select>
-                <i class="absolute right-4 top-3 fa-solid fa-chevron-down ml-auto"></i>
-            @elseif ($action == 'detail')
-                <input class="bg-white" value="{{ $surats[0]->sifat }}" disabled />
-            @endif
-        </div>
-        @error('sifat')
+        <label for="kategori" class="my-auto font-medium text-gray-900">Kategori</label>
+        <input type="text" name="kategori" id="kategori"
+            @if ($action == 'create') value="{{ old('kategori') }}" class="bg-gray-50 border  @error('kategori') border-red-600 @enderror col-span-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5"
+            @elseif ($action == 'edit') value="{{ $surats[0]->kategori }}" class="bg-gray-50 border  @error('kategori') border-red-600 @enderror col-span-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5"
+            @elseif ($action == 'detail') class="bg-white" value="{{ $surats[0]->kategori }}" disabled @endif
+            required>
+        @error('kategori')
             <p class="col-start-2 col-end-4 mt-2 text-xs text-red-600 font-medium">{{ $message }}</p>
         @enderror
     </div>
@@ -95,17 +67,6 @@
             @elseif ($action == 'edit') value="{{ $surats[0]->tanggal_kegiatan }}" class="bg-gray-50 border  @error('tanggal_kegiatan') border-red-600 @enderror col-span-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5"
             @elseif ($action == 'detail') class="bg-white" value="{{ $surats[0]->tanggal_kegiatan }}" disabled @endif>
         @error('tanggal_kegiatan')
-            <p class="col-start-2 col-end-4 mt-2 text-xs text-red-600 font-medium">{{ $message }}</p>
-        @enderror
-    </div>
-    <div class="mb-10 col-start-5 col-end-8 grid grid-cols-3">
-        <label for="kategori" class="my-auto font-medium text-gray-900">Kategori</label>
-        <input type="text" name="kategori" id="kategori"
-            @if ($action == 'create') value="{{ old('kategori') }}" class="bg-gray-50 border  @error('kategori') border-red-600 @enderror col-span-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5"
-            @elseif ($action == 'edit') value="{{ $surats[0]->kategori }}" class="bg-gray-50 border  @error('kategori') border-red-600 @enderror col-span-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5"
-            @elseif ($action == 'detail') class="bg-white" value="{{ $surats[0]->kategori }}" disabled @endif
-            required>
-        @error('kategori')
             <p class="col-start-2 col-end-4 mt-2 text-xs text-red-600 font-medium">{{ $message }}</p>
         @enderror
     </div>
