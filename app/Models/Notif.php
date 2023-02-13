@@ -35,6 +35,7 @@ class Notif
         return count(
             Surat::where("jenis_surat", "Surat Masuk")
                 ->where("disposisi", "false")
+                ->where('dibaca', 'false')
                 ->get()
         );
     }
@@ -44,6 +45,7 @@ class Notif
         return count(
             Surat::where("jenis_surat", "Surat Masuk")
                 ->where("disposisi", "true")
+                ->where('dibaca', 'false')
                 ->get()
         );
     }
@@ -53,6 +55,7 @@ class Notif
         return count(
             Surat::where("jenis_surat", "Surat Keluar")
                 ->where("status", "Belum Dinomori")
+                ->where('dibaca', 'false')
                 ->get()
         );
     }
@@ -62,6 +65,7 @@ class Notif
         return count(
             Surat::where("jenis_surat", "Surat Keluar")
                 ->where("status", "Pengajuan")
+                ->where('dibaca', 'false')
                 ->get()
         );
     }
@@ -71,22 +75,32 @@ class Notif
         return count(
             Surat::where("jenis_surat", "Surat Keluar")
                 ->where("status", "Disetujui")
+                ->where('dibaca', 'false')
                 ->get()
         );
     }
 
     public function perintah()
     {
-        return count(Surat::where("jenis_surat", "Surat Perintah")->get());
+        return count(
+            Surat::where("jenis_surat", "Surat Perintah")
+                ->where('dibaca', 'false')
+                ->get());
     }
 
     public function keputusan()
     {
-        return count(Surat::where("jenis_surat", "Surat Keputusan")->get());
+        return count(
+            Surat::where("jenis_surat", "Surat Keputusan")
+                ->where('dibaca', 'false')
+                ->get());
     }
 
     public function tugas()
     {
-        return count(Surat::where("jenis_surat", "Surat Tugas")->get());
+        return count(
+            Surat::where("jenis_surat", "Surat Tugas")
+                ->where('dibaca', 'false')
+                ->get());
     }
 }
