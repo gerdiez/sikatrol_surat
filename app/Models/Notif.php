@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Carbon\Carbon;
 use App\Models\Surat;
+use Illuminate\Support\Facades\Auth;
 
 class Notif
 {
@@ -42,12 +43,23 @@ class Notif
 
     public function disposisi()
     {
-        return count(
-            Surat::where("jenis_surat", "Surat Masuk")
-                ->where("disposisi", "true")
-                ->where('dibaca', 'false')
-                ->get()
-        );
+        if (Auth::user()->hasRole("unit")) {
+            $name = Auth::user()->name;
+            return count(
+                Surat::where("jenis_surat", "Surat Masuk")
+                    ->where("disposisi", "true")
+                    ->where('dibaca', 'false')
+                    ->where("diteruskan_ke", $name)
+                    ->get()
+                );
+        } else {
+            return count(
+                Surat::where("jenis_surat", "Surat Masuk")
+                    ->where("disposisi", "true")
+                    ->where('dibaca', 'false')
+                    ->get()
+                );
+        }
     }
 
     public function dinomori()
