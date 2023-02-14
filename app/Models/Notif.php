@@ -27,7 +27,7 @@ class Notif
     public function agenda()
     {
         return count(Surat::whereBetween("tanggal_kegiatan", [
-                Carbon::now()->format("Y-m-d"), null
+                Carbon::now(), "3000-01-01"
             ])->get());
     }
 
