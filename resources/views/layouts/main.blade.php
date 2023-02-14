@@ -36,7 +36,11 @@
         let key = Object.keys(notif)
         for (let index = 0; index < key.length; index++) {
             if (document.getElementById(key[index]) != null) {
-                document.getElementById(key[index]).textContent = notif[key[index]]
+                if (notif[key[index]] == 0) {
+                    document.getElementById(key[index]).remove()
+                } else {
+                    document.getElementById(key[index]).textContent = notif[key[index]]
+                }
             }
         }
     </script>
